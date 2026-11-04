@@ -716,6 +716,143 @@ body {
   color: #991b1b;
 }
 
+/* Reached Accommodations Section in Destination Popup */
+.popup-card.popup-wisata-card {
+  width: 315px;
+}
+
+.reached-section {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed #cbd5e1;
+}
+
+.reached-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.reached-title .count-pill {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.reached-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 120px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.reached-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.reached-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.reached-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.reached-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  background: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  font-size: 11px;
+}
+
+.reached-item:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.reached-item-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+
+.reached-item-info i {
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.reached-item-info .name {
+  font-weight: 600;
+  color: #1e293b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reached-item-dist {
+  font-weight: 700;
+  color: #0284c7;
+  font-size: 10px;
+  flex-shrink: 0;
+  background: #e0f2fe;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.buffer-active-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.buffer-active-badge .dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #f59e0b;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.35);
+  margin-right: 6px;
+}
+
+.connector-tooltip {
+  background: rgba(15, 23, 42, 0.88) !important;
+  color: white !important;
+  border: 1px solid #ea580c !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25) !important;
+}
+
 /* Custom Marker Pins */
 .custom-pin {
   display: flex;

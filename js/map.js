@@ -195,7 +195,7 @@ if (typeof dataBufferHotel !== 'undefined') {
       `;
       layer.bindPopup(popupContent);
     }
-  }).addTo(map);
+  }); // Buffer tidak otomatis ditambahkan ke peta agar tidak menutupi visualisasi titik
 }
 
 /* ================= 5. LAYER HOTEL ================= */
@@ -269,7 +269,100 @@ if (typeof dataHotel !== 'undefined') {
   layerPenginapanGroup.addTo(map);
 }
 
-/* ================= 6. LAYER WISATA (DENGAN FILTER & STATUS AKSES) ================= */
+/* ================= 6. LAYER WISATA & BUFFER INTERAKTIF PER TITIK ================= */
+let activeDestinationBuffer = null;
+const activeConnectorGroup = L.featureGroup().addTo(map);
+const wisataMarkersMap = {};
+
+// Geodesic distance (Haversine Formula) untuk perhitungan presisi meter
+function getDistanceMeters(lat1, lon1, lat2, lon2) {
+  const R = 6371000; // Radius bumi dalam meter
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
+// Temukan seluruh fasilitas akomodasi yang berada dalam radius 2.000 meter
+function getAkomodasiTerkena(destLat, destLon, radiusMeters = 2000) {
+  if (typeof dataHotel === 'undefined') return [];
+  const list = [];
+  dataHotel.features.forEach(h => {
+    const hp = h.properties;
+    const [hLon, hLat] = h.geometry.coordinates;
+    const dist = getDistanceMeters(destLat, destLon, hLat, hLon);
+    if (dist <= radiusMeters) {
+      list.push({
+        nama: hp.nama,
+        tipe: hp.tipe,
+        kategori: hp.kategori,
+        alamat: hp.alamat,
+        jarak_m: Math.round(dist),
+        jarak_km: (dist / 1000).toFixed(2),
+        lat: hLat,
+        lng: hLon
+      });
+    }
+  });
+  list.sort((a, b) => a.jarak_m - b.jarak_m);
+  return list;
+}
+
+// Bersihkan buffer titik destinasi aktif
+function clearDestinationBuffer() {
+  if (activeDestinationBuffer) {
+    map.removeLayer(activeDestinationBuffer);
+    activeDestinationBuffer = null;
+  }
+  if (activeConnectorGroup) {
+    activeConnectorGroup.clearLayers();
+  }
+}
+
+// Tampilkan buffer spesifik titik (warna Emas/Amber, beda dari Cyan keseluruhan) & garis konektor
+function showDestinationBuffer(destLat, destLon, destName, akomodasiList) {
+  clearDestinationBuffer();
+
+  // 1. Gambar Lingkaran Buffer Titik Ini (Radius 2.000 m, Warna Emas/Amber)
+  // Berbeda kontras dengan buffer keseluruhan hotel yang berwarna Cyan/Biru (#38bdf8)
+  activeDestinationBuffer = L.circle([destLat, destLon], {
+    radius: 2000,
+    fillColor: '#fbbf24',
+    fillOpacity: 0.28,
+    color: '#d97706',
+    weight: 2.8,
+    dashArray: '6, 6'
+  }).addTo(map);
+
+  activeDestinationBuffer.bindTooltip(`<strong>Buffer Jangkauan 2 Km</strong><br>${destName}`, {
+    sticky: true,
+    direction: 'top'
+  });
+
+  // 2. Gambar Garis Konektor (Oranye / Amber) ke setiap akomodasi yang terkena
+  akomodasiList.forEach(a => {
+    const line = L.polyline([[destLat, destLon], [a.lat, a.lng]], {
+      color: '#ea580c',
+      weight: 2,
+      opacity: 0.85,
+      dashArray: '4, 5'
+    });
+    line.bindTooltip(`${a.nama} (${a.jarak_m < 1000 ? a.jarak_m + ' m' : a.jarak_km + ' km'})`, {
+      sticky: true,
+      className: 'connector-tooltip'
+    });
+    activeConnectorGroup.addLayer(line);
+  });
+}
+
+// Bersihkan buffer aktif saat popup ditutup di peta
+map.on('popupclose', function() {
+  clearDestinationBuffer();
+});
+
 function createWisataIcon(isCovered, kategori) {
   const pinClass = isCovered ? 'pin-wisata-covered' : 'pin-wisata-uncovered';
   let iconName = 'fa-umbrella-beach';
@@ -288,6 +381,7 @@ function createWisataIcon(isCovered, kategori) {
 
 function renderWisataMarkers(filterKategori = 'ALL', filterAkses = 'ALL') {
   layerWisataGroup.clearLayers();
+  Object.keys(wisataMarkersMap).forEach(key => delete wisataMarkersMap[key]);
 
   if (typeof dataWisata === 'undefined') return;
 
@@ -305,12 +399,73 @@ function renderWisataMarkers(filterKategori = 'ALL', filterAkses = 'ALL') {
       icon: createWisataIcon(p.terjangkau_hotel_2km, p.kategori)
     });
 
+    // Hitung akomodasi yang terkena radius 2 km dari titik ini
+    const akomodasiList = getAkomodasiTerkena(p.latitude, p.longitude, 2000);
+
     const statusBadge = p.terjangkau_hotel_2km
       ? `<div class="popup-alert success"><i class="fa-solid fa-circle-check"></i> Terjangkau Hotel (Radius ≤ 2 Km)</div>`
       : `<div class="popup-alert warning"><i class="fa-solid fa-triangle-exclamation"></i> Belum Terjangkau Hotel (> 2 Km)</div>`;
 
+    // Buat daftar akomodasi terkena di popup
+    let akomodasiSection = '';
+    if (akomodasiList.length > 0) {
+      const listItems = akomodasiList.map(a => {
+        let iconClass = 'fa-hotel';
+        let iconColor = '#0284c7';
+        if (a.tipe === 'Wisma') {
+          iconClass = 'fa-house-user';
+          iconColor = '#6366f1';
+        } else if (a.tipe === 'Penginapan') {
+          iconClass = 'fa-bed';
+          iconColor = '#0d9488';
+        }
+        const distLabel = a.jarak_m < 1000 ? `${a.jarak_m} m` : `${a.jarak_km} km`;
+        return `
+          <div class="reached-item" title="${a.kategori} - ${a.alamat}">
+            <div class="reached-item-info">
+              <i class="fa-solid ${iconClass}" style="color: ${iconColor};"></i>
+              <span class="name">${a.nama}</span>
+            </div>
+            <span class="reached-item-dist">${distLabel}</span>
+          </div>
+        `;
+      }).join('');
+
+      akomodasiSection = `
+        <div class="reached-section">
+          <div class="reached-title">
+            <span><i class="fa-solid fa-bullseye" style="color: #d97706;"></i> Akomodasi Terkena (≤ 2 km):</span>
+            <span class="count-pill">${akomodasiList.length} Unit</span>
+          </div>
+          <div class="reached-list">
+            ${listItems}
+          </div>
+          <div class="buffer-active-badge">
+            <span><span class="dot"></span>Buffer Titik Ini Aktif (Emas)</span>
+            <span style="color:#d97706; font-size:10px;">Radius 2.000 m</span>
+          </div>
+        </div>
+      `;
+    } else {
+      akomodasiSection = `
+        <div class="reached-section">
+          <div class="popup-alert warning" style="margin-bottom: 4px;">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+              <strong>Di Luar Radius Layanan 2 Km</strong><br>
+              Akomodasi terdekat: <strong>${p.hotel_terdekat}</strong> (${p.jarak_ke_hotel_km} km)
+            </div>
+          </div>
+          <div class="buffer-active-badge">
+            <span><span class="dot"></span>Buffer Titik Ini Aktif (Emas)</span>
+            <span style="color:#d97706; font-size:10px;">Radius 2.000 m</span>
+          </div>
+        </div>
+      `;
+    }
+
     const popupContent = `
-      <div class="popup-card">
+      <div class="popup-card popup-wisata-card">
         <div class="popup-header wisata">
           <span class="badge">${p.kategori}</span>
           <h3>${p.nama}</h3>
@@ -330,20 +485,28 @@ function renderWisataMarkers(filterKategori = 'ALL', filterAkses = 'ALL') {
             <span class="val">${p.jam_buka}</span>
           </div>
           <div class="popup-row">
-            <span class="key">Hotel Terdekat:</span>
-            <span class="val">${p.hotel_terdekat}</span>
+            <span class="key">Alamat:</span>
+            <span class="val" style="font-size: 11px;">${p.alamat}</span>
           </div>
-          <div class="popup-row">
-            <span class="key">Jarak ke Hotel:</span>
-            <span class="val"><strong>${p.jarak_ke_hotel_km} km</strong> (${p.jarak_ke_hotel_m.toLocaleString('id-ID')} m)</span>
-          </div>
-          <div style="font-size: 11px; margin-top: 4px; color: #475569;">
+          <div style="font-size: 11px; margin-top: 2px; color: #475569; line-height: 1.4;">
             ${p.deskripsi}
           </div>
+          ${akomodasiSection}
         </div>
       </div>
     `;
-    marker.bindPopup(popupContent);
+
+    marker.bindPopup(popupContent, { maxWidth: 330 });
+
+    // Event listener saat marker diklik / popup dibuka
+    marker.on('click', function() {
+      showDestinationBuffer(p.latitude, p.longitude, p.nama, akomodasiList);
+    });
+    marker.on('popupopen', function() {
+      showDestinationBuffer(p.latitude, p.longitude, p.nama, akomodasiList);
+    });
+
+    wisataMarkersMap[p.nama] = marker;
     layerWisataGroup.addLayer(marker);
   });
 }
@@ -383,7 +546,6 @@ bindCheckboxLayer('toggle-layer-wisata', layerWisataGroup);
 bindCheckboxLayer('toggle-layer-hotel', layerHotelBintangGroup);
 bindCheckboxLayer('toggle-layer-wisma', layerWismaGroup);
 bindCheckboxLayer('toggle-layer-penginapan', layerPenginapanGroup);
-bindCheckboxLayer('toggle-layer-buffer', layerBuffer);
 
 /* ================= 8. COORDINATE TRACKER (BOTTOM CENTER) ================= */
 const coordText = document.getElementById('coord-text');
@@ -448,6 +610,11 @@ if (inputSearch && searchResults) {
           map.flyTo([m.lat, m.lng], 16, { duration: 1.2 });
           searchResults.style.display = 'none';
           inputSearch.value = m.name;
+          if (wisataMarkersMap[m.name]) {
+            setTimeout(() => {
+              wisataMarkersMap[m.name].openPopup();
+            }, 700);
+          }
         });
         searchResults.appendChild(item);
       });
@@ -499,21 +666,6 @@ const btnReset = document.getElementById('btn-reset-view');
 if (btnReset) {
   btnReset.addEventListener('click', () => {
     map.flyTo(mapCenter, initialZoom);
-  });
-}
-
-const btnToggleBuffer = document.getElementById('btn-toggle-buffer');
-if (btnToggleBuffer && layerBuffer) {
-  let bufferVisible = true;
-  btnToggleBuffer.addEventListener('click', () => {
-    bufferVisible = !bufferVisible;
-    if (bufferVisible) {
-      map.addLayer(layerBuffer);
-      btnToggleBuffer.classList.add('primary');
-    } else {
-      map.removeLayer(layerBuffer);
-      btnToggleBuffer.classList.remove('primary');
-    }
   });
 }
 
