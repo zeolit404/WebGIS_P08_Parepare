@@ -520,7 +520,7 @@
                 <th>Wisata Terjangkau Hotel (≤ 2 km)</th>
                 <th>Wisata Belum Terjangkau (> 2 km)</th>
                 <th>Tingkat Aksesibilitas (%)</th>
-                <th>Ketersediaan Hotel</th>
+                <th>Ketersediaan Akomodasi</th>
                 <th>Status Wilayah & Rekomendasi</th>
               </tr>
             </thead>
@@ -694,7 +694,7 @@
             <td><span class="status-pill success">${r.wisata_terjangkau} Objek</span></td>
             <td><span class="status-pill danger">${r.wisata_belum_terjangkau} Objek</span></td>
             <td><span class="status-pill ${badgeColor}"><strong>${r.persen_terjangkau}%</strong></span></td>
-            <td><strong>${r.jumlah_hotel} Unit</strong></td>
+            <td><strong>${r.total_akomodasi || 0} Unit</strong> <span style="font-size: 10.5px; color: #64748b;">(${r.hotel_bintang || 0} Hotel, ${r.wisma || 0} Wisma, ${r.penginapan || 0} Penginapan)</span></td>
             <td style="font-size: 11.5px;">${recommendations[r.kecamatan] || '-'}</td>
           </tr>
         `;
@@ -745,11 +745,12 @@
         const ck = document.getElementById('count-tab-kecamatan');
         if (ck) ck.textContent = dataKecamatan.features.length;
       }
-      if (typeof dataSummary !== 'undefined' && dataSummary.metrik_kota) {
+      if (typeof dataSummary !== 'undefined' && dataSummary.hasil_keseluruhan) {
+        const hk = dataSummary.hasil_keseluruhan;
         const ca = document.getElementById('count-tab-analisis');
-        if (ca) ca.textContent = dataSummary.metrik_kota.persentase_terjangkau + '%';
+        if (ca) ca.textContent = hk.persentase_aksesibilitas + '%';
         const fsk = document.getElementById('footer-summary-kesimpulan');
-        if (fsk) fsk.textContent = `Kesimpulan: ${dataSummary.metrik_kota.wisata_terjangkau} dari ${dataSummary.metrik_kota.total_wisata} objek wisata (${dataSummary.metrik_kota.persentase_terjangkau}%) telah terlayani akomodasi hotel (radius ≤ 2 km)`;
+        if (fsk) fsk.textContent = `Kesimpulan: ${hk.wisata_terjangkau_radius_2km} dari ${hk.total_destinasi_wisata} objek wisata (${hk.persentase_aksesibilitas}%) telah terlayani akomodasi hotel (radius ≤ 2 km)`;
       }
 
       renderTabelWisata();
