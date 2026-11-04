@@ -39,6 +39,11 @@ const esriTopo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/servic
 // Set basemap default
 osm.addTo(map);
 
+// Custom Pane khusus buffer destinasi aktif agar selalu tampil DI ATAS buffer keseluruhan (overlayPane)
+map.createPane('activeDestinationPane');
+map.getPane('activeDestinationPane').style.zIndex = 480; // Di atas overlayPane (400) dan di bawah markerPane (600)
+
+
 /* ================= 2. DATA LAYERS & GROUPS ================= */
 let layerKecamatan;
 let layerBuffer;
@@ -322,32 +327,37 @@ function clearDestinationBuffer() {
   }
 }
 
-// Tampilkan buffer spesifik titik (warna Emas/Amber, beda dari Cyan keseluruhan) & garis konektor
+// Tampilkan buffer spesifik titik (warna Oranye menyala, SELALU DI ATAS buffer Cyan keseluruhan) & garis konektor
 function showDestinationBuffer(destLat, destLon, destName, akomodasiList) {
   clearDestinationBuffer();
 
-  // 1. Gambar Lingkaran Buffer Titik Ini (Radius 2.000 m, Warna Emas/Amber)
-  // Berbeda kontras dengan buffer keseluruhan hotel yang berwarna Cyan/Biru (#38bdf8)
+  // 1. Gambar Lingkaran Buffer Titik Ini (Radius 2.000 m, Warna Oranye Tegas)
+  // Menggunakan custom pane 'activeDestinationPane' (zIndex 480) agar SELALU BERADA DI ATAS buffer Cyan keseluruhan (zIndex 400)
   activeDestinationBuffer = L.circle([destLat, destLon], {
     radius: 2000,
-    fillColor: '#fbbf24',
-    fillOpacity: 0.28,
-    color: '#d97706',
-    weight: 2.8,
+    pane: 'activeDestinationPane',
+    fillColor: '#f97316',
+    fillOpacity: 0.35,
+    color: '#c2410c',
+    weight: 3.5,
     dashArray: '6, 6'
   }).addTo(map);
 
+  activeDestinationBuffer.bringToFront();
+
   activeDestinationBuffer.bindTooltip(`<strong>Buffer Jangkauan 2 Km</strong><br>${destName}`, {
     sticky: true,
-    direction: 'top'
+    direction: 'top',
+    pane: 'activeDestinationPane'
   });
 
-  // 2. Gambar Garis Konektor (Oranye / Amber) ke setiap akomodasi yang terkena
+  // 2. Gambar Garis Konektor (Oranye) ke setiap akomodasi yang terkena
   akomodasiList.forEach(a => {
     const line = L.polyline([[destLat, destLon], [a.lat, a.lng]], {
+      pane: 'activeDestinationPane',
       color: '#ea580c',
-      weight: 2,
-      opacity: 0.85,
+      weight: 2.5,
+      opacity: 0.95,
       dashArray: '4, 5'
     });
     line.bindTooltip(`${a.nama} (${a.jarak_m < 1000 ? a.jarak_m + ' m' : a.jarak_km + ' km'})`, {
@@ -440,9 +450,9 @@ function renderWisataMarkers(filterKategori = 'ALL', filterAkses = 'ALL') {
           <div class="reached-list">
             ${listItems}
           </div>
-          <div class="buffer-active-badge">
-            <span><span class="dot"></span>Buffer Titik Ini Aktif (Emas)</span>
-            <span style="color:#d97706; font-size:10px;">Radius 2.000 m</span>
+          <div class="buffer-active-badge" style="background: #fff7ed; border-color: #fdba74; color: #9a3412;">
+            <span><span class="dot" style="background: #ea580c; box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.35);"></span>Buffer Titik Ini Aktif (Oranye)</span>
+            <span style="color:#c2410c; font-size:10px; font-weight:700;">Radius 2.000 m</span>
           </div>
         </div>
       `;
@@ -456,9 +466,9 @@ function renderWisataMarkers(filterKategori = 'ALL', filterAkses = 'ALL') {
               Akomodasi terdekat: <strong>${p.hotel_terdekat}</strong> (${p.jarak_ke_hotel_km} km)
             </div>
           </div>
-          <div class="buffer-active-badge">
-            <span><span class="dot"></span>Buffer Titik Ini Aktif (Emas)</span>
-            <span style="color:#d97706; font-size:10px;">Radius 2.000 m</span>
+          <div class="buffer-active-badge" style="background: #fff7ed; border-color: #fdba74; color: #9a3412;">
+            <span><span class="dot" style="background: #ea580c; box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.35);"></span>Buffer Titik Ini Aktif (Oranye)</span>
+            <span style="color:#c2410c; font-size:10px; font-weight:700;">Radius 2.000 m</span>
           </div>
         </div>
       `;
