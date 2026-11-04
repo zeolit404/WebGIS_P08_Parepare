@@ -43,7 +43,9 @@ osm.addTo(map);
 let layerKecamatan;
 let layerBuffer;
 const layerWisataGroup = L.layerGroup();
-const layerHotelGroup = L.layerGroup();
+const layerHotelBintangGroup = L.layerGroup();
+const layerWismaGroup = L.layerGroup();
+const layerPenginapanGroup = L.layerGroup();
 
 // Warna khas per kecamatan
 const kecColors = {
@@ -254,9 +256,17 @@ if (typeof dataHotel !== 'undefined') {
       </div>
     `;
     marker.bindPopup(popupContent);
-    layerHotelGroup.addLayer(marker);
+    if (p.tipe === 'Wisma') {
+      layerWismaGroup.addLayer(marker);
+    } else if (p.tipe === 'Penginapan') {
+      layerPenginapanGroup.addLayer(marker);
+    } else {
+      layerHotelBintangGroup.addLayer(marker);
+    }
   });
-  layerHotelGroup.addTo(map);
+  layerHotelBintangGroup.addTo(map);
+  layerWismaGroup.addTo(map);
+  layerPenginapanGroup.addTo(map);
 }
 
 /* ================= 6. LAYER WISATA (DENGAN FILTER & STATUS AKSES) ================= */
@@ -351,14 +361,45 @@ const baseMaps = {
 const overlayMaps = {
   "Batas Administrasi Kecamatan": layerKecamatan,
   "Titik Objek Wisata": layerWisataGroup,
-  "Titik Hotel & Akomodasi": layerHotelGroup,
-  "Area Jangkauan Hotel (Radius 2 Km)": layerBuffer
+  "Hotel Bintang & Melati": layerHotelBintangGroup,
+  "Wisma & Guest House": layerWismaGroup,
+  "Penginapan & Homestay": layerPenginapanGroup,
+  "Area Jangkauan (Radius 2 Km)": layerBuffer
 };
 
 L.control.layers(baseMaps, overlayMaps, {
   position: 'topright',
   collapsed: true
 }).addTo(map);
+
+/* ================= 8. SIDEBAR CHECKBOX TOGGLES (ON / OFF) ================= */
+function bindCheckboxLayer(checkboxId, layer) {
+  const chk = document.getElementById(checkboxId);
+  if (!chk || !layer) return;
+
+  chk.addEventListener('change', function() {
+    if (this.checked) {
+      if (!map.hasLayer(layer)) map.addLayer(layer);
+    } else {
+      if (map.hasLayer(layer)) map.removeLayer(layer);
+    }
+  });
+
+  // Sync saat di-toggle dari Layer Control kanan atas
+  map.on('overlayadd', function(e) {
+    if (e.layer === layer) chk.checked = true;
+  });
+  map.on('overlayremove', function(e) {
+    if (e.layer === layer) chk.checked = false;
+  });
+}
+
+bindCheckboxLayer('toggle-layer-kecamatan', layerKecamatan);
+bindCheckboxLayer('toggle-layer-wisata', layerWisataGroup);
+bindCheckboxLayer('toggle-layer-hotel', layerHotelBintangGroup);
+bindCheckboxLayer('toggle-layer-wisma', layerWismaGroup);
+bindCheckboxLayer('toggle-layer-penginapan', layerPenginapanGroup);
+bindCheckboxLayer('toggle-layer-buffer', layerBuffer);
 
 /* ================= 8. COORDINATE TRACKER (BOTTOM CENTER) ================= */
 const coordText = document.getElementById('coord-text');
@@ -531,9 +572,11 @@ function initCharts() {
   const rekap = dataSummary.rekap_per_kecamatan;
   const labels = rekap.map(r => r.kecamatan);
   const dataWisataVal = rekap.map(r => r.jumlah_wisata);
-  const dataHotelVal = rekap.map(r => r.jumlah_hotel);
+  const dataHotelVal = rekap.map(r => r.hotel_bintang || 0);
+  const dataWismaVal = rekap.map(r => r.wisma || 0);
+  const dataPenginapanVal = rekap.map(r => r.penginapan || 0);
 
-  // 1. Bar Chart: Wisata vs Hotel
+  // 1. Bar Chart: Wisata vs Tipe Akomodasi per Kecamatan
   const ctxBar = document.getElementById('chart-kecamatan');
   if (ctxBar) {
     new Chart(ctxBar, {
@@ -542,27 +585,50 @@ function initCharts() {
         labels: labels,
         datasets: [
           {
-            label: 'Wisata',
+            label: 'Wisata (12)',
             data: dataWisataVal,
             backgroundColor: '#10b981',
-            borderRadius: 6
+            borderRadius: 4
           },
           {
-            label: 'Hotel',
+            label: 'Hotel (10)',
             data: dataHotelVal,
             backgroundColor: '#0284c7',
-            borderRadius: 6
+            borderRadius: 4
+          },
+          {
+            label: 'Wisma (7)',
+            data: dataWismaVal,
+            backgroundColor: '#6366f1',
+            borderRadius: 4
+          },
+          {
+            label: 'Penginapan (5)',
+            data: dataPenginapanVal,
+            backgroundColor: '#0d9488',
+            borderRadius: 4
           }
         ]
       },
       options: {
         responsive: true,
         plugins: {
-          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } }
+          legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9.5 } } },
+          tooltip: {
+            callbacks: {
+              footer: function(tooltipItems) {
+                let total = 0;
+                tooltipItems.forEach(function(tooltipItem) {
+                  total += tooltipItem.parsed.y;
+                });
+                return 'Total: ' + total;
+              }
+            }
+          }
         },
         scales: {
           y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: 9 } } },
-          x: { ticks: { font: { size: 9 } } }
+          x: { ticks: { font: { size: 9.5 } } }
         }
       }
     });

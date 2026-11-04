@@ -108,6 +108,60 @@
           </div>
         </div>
 
+        <!-- LAYER TOGGLES (ON / OFF) -->
+        <div class="filter-group">
+          <div class="section-title"><i class="fa-solid fa-layer-group"></i> Kontrol Lapisan Peta (ON / OFF)</div>
+          <div class="layer-list">
+            <div class="layer-item">
+              <label>
+                <input type="checkbox" id="toggle-layer-kecamatan" checked style="accent-color: #0284c7; cursor: pointer;">
+                <span>Batas Administrasi Kecamatan</span>
+              </label>
+              <span class="layer-badge" style="background: #e0f2fe; color: #0369a1;">4 Poligon</span>
+            </div>
+
+            <div class="layer-item">
+              <label>
+                <input type="checkbox" id="toggle-layer-wisata" checked style="accent-color: #10b981; cursor: pointer;">
+                <span><i class="fa-solid fa-umbrella-beach" style="color: #10b981;"></i> Objek Wisata</span>
+              </label>
+              <span class="layer-badge" style="background: #d1fae5; color: #065f46;">12 Titik</span>
+            </div>
+
+            <div class="layer-item">
+              <label>
+                <input type="checkbox" id="toggle-layer-hotel" checked style="accent-color: #0284c7; cursor: pointer;">
+                <span><i class="fa-solid fa-hotel" style="color: #0284c7;"></i> Hotel Bintang & Melati</span>
+              </label>
+              <span class="layer-badge" style="background: #e0f2fe; color: #0284c7;">10 Unit</span>
+            </div>
+
+            <div class="layer-item">
+              <label>
+                <input type="checkbox" id="toggle-layer-wisma" checked style="accent-color: #6366f1; cursor: pointer;">
+                <span><i class="fa-solid fa-house-user" style="color: #6366f1;"></i> Wisma & Guest House</span>
+              </label>
+              <span class="layer-badge" style="background: #e0e7ff; color: #4338ca;">7 Unit</span>
+            </div>
+
+            <div class="layer-item">
+              <label>
+                <input type="checkbox" id="toggle-layer-penginapan" checked style="accent-color: #0d9488; cursor: pointer;">
+                <span><i class="fa-solid fa-bed" style="color: #0d9488;"></i> Penginapan & Homestay</span>
+              </label>
+              <span class="layer-badge" style="background: #ccfbf1; color: #0f766e;">5 Unit</span>
+            </div>
+
+            <div class="layer-item">
+              <label>
+                <input type="checkbox" id="toggle-layer-buffer" checked style="accent-color: #0284c7; cursor: pointer;">
+                <span><i class="fa-solid fa-bullseye" style="color: #0284c7;"></i> Buffer Jangkauan 2 Km</span>
+              </label>
+              <span class="layer-badge" style="background: #fef3c7; color: #b45309;">2.000 m</span>
+            </div>
+          </div>
+        </div>
+
         <!-- FILTER WISATA -->
         <div class="filter-group">
           <div class="section-title"><i class="fa-solid fa-filter"></i> Filter Destinasi Wisata</div>
@@ -141,7 +195,7 @@
 
         <!-- GRAFIK CHART.JS -->
         <div class="chart-box">
-          <h4>Distribusi Wisata & Hotel per Kecamatan</h4>
+          <h4>Distribusi Wisata & Akomodasi per Kecamatan</h4>
           <canvas id="chart-kecamatan" height="180"></canvas>
         </div>
 
@@ -195,7 +249,7 @@
           <div class="legend-group-title">Titik Fasilitas & Objek</div>
           <div class="legend-item">
             <div class="legend-symbol circle" style="background: #10b981; border: 2px solid white;"></div>
-            <span>Wisata Terjangkau Hotel (≤ 2 km)</span>
+            <span>Wisata Terjangkau (≤ 2 km)</span>
           </div>
           <div class="legend-item" style="margin-top: 4px;">
             <div class="legend-symbol circle" style="background: #ef4444; border: 2px solid white;"></div>
@@ -203,7 +257,15 @@
           </div>
           <div class="legend-item" style="margin-top: 4px;">
             <div class="legend-symbol circle" style="background: #0284c7; border: 2px solid white;"></div>
-            <span>Hotel & Akomodasi</span>
+            <span>Hotel Bintang & Melati</span>
+          </div>
+          <div class="legend-item" style="margin-top: 4px;">
+            <div class="legend-symbol circle" style="background: #6366f1; border: 2px solid white;"></div>
+            <span>Wisma & Guest House</span>
+          </div>
+          <div class="legend-item" style="margin-top: 4px;">
+            <div class="legend-symbol circle" style="background: #0d9488; border: 2px solid white;"></div>
+            <span>Penginapan & Homestay</span>
           </div>
         </div>
 
