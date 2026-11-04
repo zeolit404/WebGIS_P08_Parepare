@@ -56,6 +56,9 @@
       <button class="btn-nav" id="btn-reset-view" title="Reset Pandangan Peta">
         <i class="fa-solid fa-crosshairs"></i> Reset Peta
       </button>
+      <button class="btn-nav primary" id="btn-toggle-buffer" title="Nyalakan/Matikan Area Buffer Keseluruhan 2 Km">
+        <i class="fa-solid fa-bullseye"></i> Buffer 2 Km
+      </button>
     </div>
   </header>
 
@@ -147,6 +150,14 @@
                 <span><i class="fa-solid fa-bed" style="color: #0d9488;"></i> Penginapan & Homestay</span>
               </label>
               <span class="layer-badge" style="background: #ccfbf1; color: #0f766e;">5 Unit</span>
+            </div>
+
+            <div class="layer-item">
+              <label>
+                <input type="checkbox" id="toggle-layer-buffer" checked style="accent-color: #0284c7; cursor: pointer;">
+                <span><i class="fa-solid fa-bullseye" style="color: #0284c7;"></i> Buffer Keseluruhan (2 Km)</span>
+              </label>
+              <span class="layer-badge" style="background: #e0f2fe; color: #0284c7;">Radius 2 Km</span>
             </div>
           </div>
         </div>
@@ -262,6 +273,10 @@
         <div>
           <div class="legend-group-title">Analisis Spasial Jangkauan</div>
           <div class="legend-item">
+            <div class="legend-symbol" style="background: rgba(56, 189, 248, 0.35); border: 1.5px dashed #0284c7;"></div>
+            <span>Buffer Keseluruhan (Cyan 2 Km)</span>
+          </div>
+          <div class="legend-item" style="margin-top: 4px;">
             <div class="legend-symbol" style="background: rgba(251, 191, 36, 0.4); border: 2px dashed #d97706;"></div>
             <span>Buffer Destinasi Aktif (Emas 2 Km)</span>
           </div>

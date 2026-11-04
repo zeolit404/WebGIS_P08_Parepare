@@ -195,7 +195,7 @@ if (typeof dataBufferHotel !== 'undefined') {
       `;
       layer.bindPopup(popupContent);
     }
-  }); // Buffer tidak otomatis ditambahkan ke peta agar tidak menutupi visualisasi titik
+  }).addTo(map);
 }
 
 /* ================= 5. LAYER HOTEL ================= */
@@ -546,6 +546,37 @@ bindCheckboxLayer('toggle-layer-wisata', layerWisataGroup);
 bindCheckboxLayer('toggle-layer-hotel', layerHotelBintangGroup);
 bindCheckboxLayer('toggle-layer-wisma', layerWismaGroup);
 bindCheckboxLayer('toggle-layer-penginapan', layerPenginapanGroup);
+bindCheckboxLayer('toggle-layer-buffer', layerBuffer);
+
+// Sinkronisasi tombol Buffer di navbar dengan checkbox di sidebar
+const btnToggleBuffer = document.getElementById('btn-toggle-buffer');
+const chkBuffer = document.getElementById('toggle-layer-buffer');
+
+function setBufferVisibility(visible) {
+  if (!layerBuffer) return;
+  if (visible) {
+    if (!map.hasLayer(layerBuffer)) map.addLayer(layerBuffer);
+    if (chkBuffer) chkBuffer.checked = true;
+    if (btnToggleBuffer) btnToggleBuffer.classList.add('primary');
+  } else {
+    if (map.hasLayer(layerBuffer)) map.removeLayer(layerBuffer);
+    if (chkBuffer) chkBuffer.checked = false;
+    if (btnToggleBuffer) btnToggleBuffer.classList.remove('primary');
+  }
+}
+
+if (btnToggleBuffer) {
+  btnToggleBuffer.addEventListener('click', () => {
+    const isNowVisible = !map.hasLayer(layerBuffer);
+    setBufferVisibility(isNowVisible);
+  });
+}
+
+if (chkBuffer) {
+  chkBuffer.addEventListener('change', () => {
+    setBufferVisibility(chkBuffer.checked);
+  });
+}
 
 /* ================= 8. COORDINATE TRACKER (BOTTOM CENTER) ================= */
 const coordText = document.getElementById('coord-text');
