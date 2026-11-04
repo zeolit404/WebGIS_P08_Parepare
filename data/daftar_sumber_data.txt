@@ -1,0 +1,32 @@
+DAFTAR SUMBER DATA SPASIAL
+TUGAS PRAKTIKUM P08 - WEBGIS KOTA PAREPARE
+Mahasiswa: M. ARIEF ABDILLAH (V126241003)
+Dosen: Andang Suryana Soma, S.Hut., M.P., Ph.D.
+
+1. Batas Administrasi Kecamatan Kota Parepare:
+   - Sumber: Ina-Geoportal Badan Informasi Geospasial (BIG)
+   - Layer: ADMINISTRASIKECAMATAN_AR_50K (Skala 1:50.000)
+   - Datum: WGS84 (EPSG:4326)
+   - Format: Shapefile (.shp, .dbf, .prj, .shx) -> Dikonversi ke GeoJSON
+
+2. Data Demografi & Kewilayahan:
+   - Sumber: Badan Pusat Statistik (BPS) Kota Parepare
+   - Publikasi: "Kota Parepare Dalam Angka 2024"
+   - Atribut: Luas wilayah (km²), Jumlah Penduduk (jiwa), Kepadatan, Jumlah Kelurahan
+
+3. Titik Objek Wisata:
+   - Sumber: OpenStreetMap (OSM) Contributors & Dinas Kepemudaan, Olahraga, dan Pariwisata (Disporapar) Kota Parepare
+   - Lisensi: Open Database License (ODbL)
+   - Tahun: 2024 / 2025
+   - Total Fitur: 12 Objek Wisata
+
+4. Titik Hotel & Akomodasi:
+   - Sumber: OpenStreetMap (OSM) Contributors & Perhimpunan Hotel dan Restoran Indonesia (PHRI) BPC Parepare
+   - Lisensi: Open Database License (ODbL)
+   - Tahun: 2024 / 2025
+   - Total Fitur: 10 Hotel / Akomodasi
+
+5. Analisis Spasial:
+   - Metode: Geodesic Buffer Jangkauan Layanan 2 Km (Turf.js)
+   - Analisis Point in Polygon / Near Distance
+   - Klasifikasi: Terjangkau (<= 2 km) vs Belum Terjangkau (> 2 km)

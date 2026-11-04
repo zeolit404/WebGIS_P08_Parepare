@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebGIS Analisis Wisata & Hotel Kota Parepare</title>
+  
+  <!-- Favicon / Tab Icon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ================= TOP NAVBAR ================= -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <div class="brand-icon">
+        <i class="fa-solid fa-map-location-dot"></i>
+      </div>
+      <div class="brand-text">
+        <h1>WebGIS Kota Parepare <span class="brand-badge">P08</span></h1>
+        <p>Analisis Spasial Aksesibilitas Destinasi Wisata terhadap Hotel (Radius 2 Km)</p>
+      </div>
+    </div>
+
+    <div class="nav-stats">
+      <div class="stat-pill">
+        <i class="fa-solid fa-umbrella-beach"></i>
+        <span>Wisata: <strong class="num" id="nav-total-wisata">12</strong></span>
+      </div>
+      <div class="stat-pill">
+        <i class="fa-solid fa-hotel"></i>
+        <span>Hotel: <strong class="num" id="nav-total-hotel">10</strong></span>
+      </div>
+      <div class="stat-pill success">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>Terjangkau: <strong class="num" id="nav-percent-covered">67%</strong></span>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-nav" id="btn-reset-view" title="Reset Pandangan Peta">
+        <i class="fa-solid fa-crosshairs"></i> Reset Peta
+      </button>
+      <button class="btn-nav primary" id="btn-toggle-buffer" title="Nyalakan/Matikan Area Buffer 2 Km">
+        <i class="fa-solid fa-bullseye"></i> Buffer 2 Km
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="main-container">
+
+    <!-- FLOATING TOGGLE FOR SIDEBAR -->
+    <button class="sidebar-toggle-float" id="btn-toggle-sidebar" title="Buka/Tutup Panel Statistik">
+      <i class="fa-solid fa-chart-pie"></i>
+      <span>Panel Statistik</span>
+    </button>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2><i class="fa-solid fa-sliders"></i> Kontrol & Analisis Spasial</h2>
+        <button class="btn-icon" id="btn-close-sidebar" title="Tutup Panel">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+      </div>
+
+      <div class="sidebar-content">
+        <!-- METRICS -->
+        <div>
+          <div class="section-title"><i class="fa-solid fa-chart-simple"></i> Ringkasan Spasial</div>
+          <div class="metrics-grid">
+            <div class="metric-card primary">
+              <div class="label">Total Destinasi Wisata</div>
+              <div class="value">12 Titik</div>
+              <div class="sub">4 Kecamatan</div>
+            </div>
+            <div class="metric-card primary">
+              <div class="label">Total Akomodasi Hotel</div>
+              <div class="value">10 Hotel</div>
+              <div class="sub">Kapasitas Beragam</div>
+            </div>
+            <div class="metric-card accent">
+              <div class="label">Wisata Terjangkau Hotel</div>
+              <div class="value">8 Objek (67%)</div>
+              <div class="sub">Jarak ≤ 2 Km dari Hotel</div>
+            </div>
+            <div class="metric-card" style="border-left: 3px solid #ef4444;">
+              <div class="label">Belum Terjangkau Hotel</div>
+              <div class="value" style="color: #ef4444;">4 Objek (33%)</div>
+              <div class="sub">Potensi Blank Spot</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FILTER WISATA -->
+        <div class="filter-group">
+          <div class="section-title"><i class="fa-solid fa-filter"></i> Filter Destinasi Wisata</div>
+          <select id="filter-kategori" class="select-control">
+            <option value="ALL">Semua Kategori Wisata (12)</option>
+            <option value="Bahari & Pantai">Bahari & Pantai</option>
+            <option value="Budaya & Landmark">Budaya & Landmark</option>
+            <option value="Alam & Ekowisata">Alam & Ekowisata</option>
+            <option value="Sejarah & Edukasi">Sejarah & Edukasi</option>
+            <option value="Rekreasi & Keluarga">Rekreasi & Keluarga</option>
+          </select>
+
+          <select id="filter-aksesibilitas" class="select-control">
+            <option value="ALL">Semua Status Aksesibilitas</option>
+            <option value="COVERED">Hanya Terjangkau Hotel (≤ 2 km)</option>
+            <option value="UNCOVERED">Hanya Belum Terjangkau (> 2 km)</option>
+          </select>
+        </div>
+
+        <!-- QUICK ZOOM KECAMATAN -->
+        <div>
+          <div class="section-title"><i class="fa-solid fa-location-crosshairs"></i> Fokus Wilayah Kecamatan</div>
+          <div class="zoom-chips">
+            <button class="chip-btn" data-kec="Kota Parepare">Semua Wilayah</button>
+            <button class="chip-btn" data-kec="Ujung">Kec. Ujung</button>
+            <button class="chip-btn" data-kec="Bacukiki Barat">Kec. Bacukiki Barat</button>
+            <button class="chip-btn" data-kec="Soreang">Kec. Soreang</button>
+            <button class="chip-btn" data-kec="Bacukiki">Kec. Bacukiki</button>
+          </div>
+        </div>
+
+        <!-- GRAFIK CHART.JS -->
+        <div class="chart-box">
+          <h4>Distribusi Wisata & Hotel per Kecamatan</h4>
+          <canvas id="chart-kecamatan" height="180"></canvas>
+        </div>
+
+        <div class="chart-box">
+          <h4>Rasio Keterjangkauan Akomodasi</h4>
+          <canvas id="chart-aksesibilitas" height="150"></canvas>
+        </div>
+
+        <!-- INFORMASI MAHASISWA & SUMBER -->
+        <div style="font-size: 11px; color: var(--text-muted); line-height: 1.6; border-top: 1px solid #e2e8f0; padding-top: 10px;">
+          <strong>Penyusun:</strong> M. Arief Abdillah (V126241003)<br>
+          <strong>Mata Kuliah:</strong> Praktek Pengelolaan Big Data & WebGIS<br>
+          <strong>Dosen Pengampu:</strong> Andang Suryana Soma, S.Hut., M.P., Ph.D.<br>
+          <strong>Sumber Data:</strong> Ina-Geoportal BIG (Batas 50K), BPS Kota Parepare (2024), OpenStreetMap.
+        </div>
+      </div>
+    </aside>
+
+    <!-- SEARCH BAR OVERLAY -->
+    <div class="map-search-bar" id="map-search-bar">
+      <i class="fa-solid fa-magnifying-glass" style="color: #94a3b8;"></i>
+      <input type="text" id="input-search" placeholder="Cari nama wisata, hotel, atau kecamatan..." autocomplete="off">
+      <div class="search-results" id="search-results"></div>
+    </div>
+
+    <!-- MAP CONTAINER -->
+    <div id="map"></div>
+
+    <!-- COORDINATE TRACKER (BOTTOM CENTER) -->
+    <div class="coord-box" id="coord-box">
+      <i class="fa-solid fa-location-dot" style="color: #38bdf8;"></i>
+      <span id="coord-text">Lat: -4.01500 | Lng: 119.63000</span>
+    </div>
+
+    <!-- MAP LEGEND (BOTTOM RIGHT) -->
+    <div class="map-legend" id="map-legend">
+      <div class="legend-header" id="legend-header">
+        <h3><i class="fa-solid fa-layer-group"></i> Legenda Peta</h3>
+        <i class="fa-solid fa-chevron-down" id="legend-chevron"></i>
+      </div>
+      <div class="legend-body" id="legend-body">
+        <div>
+          <div class="legend-group-title">Batas Wilayah</div>
+          <div class="legend-item">
+            <div class="legend-symbol" style="background: rgba(2, 132, 199, 0.2); border: 2px solid #0284c7;"></div>
+            <span>Batas Kecamatan (Ina-Geoportal)</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="legend-group-title">Titik Fasilitas & Objek</div>
+          <div class="legend-item">
+            <div class="legend-symbol circle" style="background: #10b981; border: 2px solid white;"></div>
+            <span>Wisata Terjangkau Hotel (≤ 2 km)</span>
+          </div>
+          <div class="legend-item" style="margin-top: 4px;">
+            <div class="legend-symbol circle" style="background: #ef4444; border: 2px solid white;"></div>
+            <span>Wisata Belum Terjangkau (> 2 km)</span>
+          </div>
+          <div class="legend-item" style="margin-top: 4px;">
+            <div class="legend-symbol circle" style="background: #0284c7; border: 2px solid white;"></div>
+            <span>Hotel & Akomodasi</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="legend-group-title">Analisis Spasial Jangkauan</div>
+          <div class="legend-item">
+            <div class="legend-symbol" style="background: rgba(56, 189, 248, 0.35); border: 1.5px dashed #0284c7;"></div>
+            <span>Area Buffer Hotel (Radius 2 Km)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= SCRIPTS ================= -->
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- DATA JS (CORS-free fallback) -->
+  <script src="data/kecamatan_parepare.js"></script>
+  <script src="data/wisata_parepare.js"></script>
+  <script src="data/hotel_parepare.js"></script>
+  <script src="data/buffer_hotel_2km.js"></script>
+  <script src="data/analisis_summary.js"></script>
+
+  <!-- Main WebGIS Application Script -->
+  <script src="js/map.js"></script>
+
+</body>
+</html>

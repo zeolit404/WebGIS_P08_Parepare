@@ -1,0 +1,16 @@
+{
+  "name": "webgis-p08-parepare",
+  "version": "1.0.0",
+  "description": "WebGIS Analisis Spasial Sebaran Destinasi Wisata dan Hotel di Kota Parepare - Tugas Praktikum P08",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "M. Arief Abdillah (V126241003)",
+  "license": "MIT",
+  "dependencies": {
+    "@turf/turf": "^7.4.0",
+    "shapefile": "^0.6.6",
+    "shpjs": "^6.2.0"
+  }
+}

@@ -1,0 +1,225 @@
+const dataHotel = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "nama": "Hotel Kenari Bukit Resort",
+        "kategori": "Hotel Bintang 3",
+        "kecamatan": "Bacukiki Barat",
+        "alamat": "Jl. Jend. Sudirman No.65, Bumi Harapan, Kec. Bacukiki Barat, Kota Parepare",
+        "latitude": -4.033374,
+        "longitude": 119.630495,
+        "kisaran_harga": "Rp 350.000 - Rp 650.000 / malam",
+        "telepon": "(0421) 21125",
+        "fasilitas": "Kolam Renang, Restoran, Ruang Rapat, WiFi, Parkir Luas"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.630495,
+          -4.033374
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "nama": "Hotel Pare Wisata",
+        "kategori": "Hotel Bintang 2",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Sulawesi No.25, Mallusetasi, Kec. Ujung, Kota Parepare",
+        "latitude": -4.00596,
+        "longitude": 119.623017,
+        "kisaran_harga": "Rp 250.000 - Rp 450.000 / malam",
+        "telepon": "(0421) 21545",
+        "fasilitas": "Restoran, AC, TV Kabel, WiFi, Layanan Kamar 24 Jam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.623017,
+          -4.00596
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "nama": "Hotel Permata Sari",
+        "kategori": "Hotel Bintang 2",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Bau Massepe No.195, Labukkang, Kec. Ujung, Kota Parepare",
+        "latitude": -4.008157,
+        "longitude": 119.625227,
+        "kisaran_harga": "Rp 275.000 - Rp 500.000 / malam",
+        "telepon": "(0421) 22388",
+        "fasilitas": "Meeting Room, Kafe, Parkir Pribadi, WiFi Cepat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.625227,
+          -4.008157
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "nama": "Pare Beach Hotel",
+        "kategori": "Hotel Bintang 3",
+        "kecamatan": "Bacukiki Barat",
+        "alamat": "Jl. Mattirotasi No.105, Kp. Baru, Kec. Bacukiki Barat, Kota Parepare",
+        "latitude": -4.023226,
+        "longitude": 119.62416,
+        "kisaran_harga": "Rp 380.000 - Rp 750.000 / malam",
+        "telepon": "(0421) 24455",
+        "fasilitas": "Pemandangan Laut Langsung, Restoran Tepi Pantai, Rooftop Bar, WiFi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.62416,
+          -4.023226
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5,
+        "nama": "Hotel Delima Sari",
+        "kategori": "Hotel Bintang 1",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Bau Massepe No.234, Cappa Galung, Kec. Ujung, Kota Parepare",
+        "latitude": -4.007778,
+        "longitude": 119.625958,
+        "kisaran_harga": "Rp 180.000 - Rp 300.000 / malam",
+        "telepon": "(0421) 21789",
+        "fasilitas": "AC, Sarapan, Parkir, Layanan Laundry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.625958,
+          -4.007778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6,
+        "nama": "Hotel Grand Star",
+        "kategori": "Hotel Bintang 3",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Bau Massepe No.88, Labukkang, Kec. Ujung, Kota Parepare",
+        "latitude": -4.007008,
+        "longitude": 119.625419,
+        "kisaran_harga": "Rp 320.000 - Rp 600.000 / malam",
+        "telepon": "(0421) 28999",
+        "fasilitas": "Ballroom, Restoran, Pusat Kebugaran, Lift, Parkir Basement"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.625419,
+          -4.007008
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7,
+        "nama": "Hotel Bugis",
+        "kategori": "Hotel Melati / Budget",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Sultan Hasanuddin No.12, Ujung Sabbang, Kec. Ujung, Kota Parepare",
+        "latitude": -4.007629,
+        "longitude": 119.624803,
+        "kisaran_harga": "Rp 150.000 - Rp 250.000 / malam",
+        "telepon": "(0421) 23111",
+        "fasilitas": "AC, TV, Musholla, Lokasi Strategis Dekat Pelabuhan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.624803,
+          -4.007629
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8,
+        "nama": "Hotel Puri Gandaria",
+        "kategori": "Hotel Bintang 2",
+        "kecamatan": "Bacukiki Barat",
+        "alamat": "Jl. Jend. Sudirman No.140, Lumpue, Kec. Bacukiki Barat, Kota Parepare",
+        "latitude": -4.047897,
+        "longitude": 119.628086,
+        "kisaran_harga": "Rp 250.000 - Rp 450.000 / malam",
+        "telepon": "(0421) 27660",
+        "fasilitas": "Taman Asri, Restoran, Ruang Seminar, Parkir Aman"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.628086,
+          -4.047897
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9,
+        "nama": "Hotel Musa Pratama",
+        "kategori": "Hotel Melati / Budget",
+        "kecamatan": "Soreang",
+        "alamat": "Jl. Jend. Ahmad Yani Km.4, Lapadde, Kec. Soreang, Kota Parepare",
+        "latitude": -3.992333,
+        "longitude": 119.652733,
+        "kisaran_harga": "Rp 175.000 - Rp 300.000 / malam",
+        "telepon": "(0421) 26344",
+        "fasilitas": "AC, Parkir Kendaraan Luas, Dekat Akses Antarkota"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.652733,
+          -3.992333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10,
+        "nama": "Hotel Mario & Cafe",
+        "kategori": "Hotel Bintang 1",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Lahalede No.45, Ujung Baru, Kec. Ujung, Kota Parepare",
+        "latitude": -4.0142,
+        "longitude": 119.6268,
+        "kisaran_harga": "Rp 200.000 - Rp 350.000 / malam",
+        "telepon": "(0421) 24123",
+        "fasilitas": "Kafe 24 Jam, Live Music, Free WiFi, Parkir Motor/Mobil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6268,
+          -4.0142
+        ]
+      }
+    }
+  ]
+};
