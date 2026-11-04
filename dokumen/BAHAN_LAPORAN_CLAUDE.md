@@ -99,7 +99,7 @@ Dokumen ini disusun untuk memudahkan pembuatan laporan akhir di Claude sesuai te
 | **Dibuka di browser lain** | Berhasil diuji pada Microsoft Edge, Google Chrome, dan Mozilla Firefox dengan tampilan konsisten. |
 | **Dibuka di HP / layar kecil** | Responsif: Navbar menyesuaikan ukuran, sidebar dapat di-collapse, panel kontrol tetap mudah diakses. |
 | **Angka di WebGIS = hasil analisis** | Sinkron 100%: Total 32 wisata, 22 akomodasi (10 hotel, 7 wisma, 5 penginapan), 28 terjangkau (88%), 4 belum terjangkau (12%). |
-| **Alamat publik (jika diunggah)** | `http://localhost:3000` (Lokal) / GitHub Pages repository. |
+| **Alamat publik (jika diunggah)** | **Live WebGIS (GitHub Pages):** https://zeolit404.github.io/WebGIS_P08_Parepare/<br>**Tabel Atribut Online:** https://zeolit404.github.io/WebGIS_P08_Parepare/tabel_atribut.html<br>**Repositori GitHub:** https://github.com/zeolit404/WebGIS_P08_Parepare |
 | **Tautan video demo** | Diisi tautan video rekaman layar (≤ 3 menit). |
 
 ---

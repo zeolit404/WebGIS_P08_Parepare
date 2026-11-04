@@ -13,6 +13,11 @@ Proyek tugas mandiri praktikum Pertemuan 08 (P08) mata kuliah **Praktek Pengelol
 * **Dosen Pengampu**: Andang Suryana Soma, S.Hut., M.P., Ph.D.
 * **Metode Pembuatan**: Jalur A (Coding: HTML5, CSS3, JavaScript, Leaflet.js, Turf.js, Chart.js)
 
+### Tautan Publikasi WebGIS:
+* **Live WebGIS (GitHub Pages)**: [https://zeolit404.github.io/WebGIS_P08_Parepare/](https://zeolit404.github.io/WebGIS_P08_Parepare/)
+* **Halaman Tabel Atribut Spasial**: [https://zeolit404.github.io/WebGIS_P08_Parepare/tabel_atribut.html](https://zeolit404.github.io/WebGIS_P08_Parepare/tabel_atribut.html)
+* **Repositori GitHub**: [https://github.com/zeolit404/WebGIS_P08_Parepare](https://github.com/zeolit404/WebGIS_P08_Parepare)
+
 ---
 
 ## 1. Tujuan & Pertanyaan Analisis Spasial
