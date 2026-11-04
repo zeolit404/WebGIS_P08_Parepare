@@ -358,16 +358,8 @@ const baseMaps = {
   "Esri Topografi & Relief": esriTopo
 };
 
-const overlayMaps = {
-  "Batas Administrasi Kecamatan": layerKecamatan,
-  "Titik Objek Wisata": layerWisataGroup,
-  "Hotel Bintang & Melati": layerHotelBintangGroup,
-  "Wisma & Guest House": layerWismaGroup,
-  "Penginapan & Homestay": layerPenginapanGroup,
-  "Area Jangkauan (Radius 2 Km)": layerBuffer
-};
-
-L.control.layers(baseMaps, overlayMaps, {
+// Layer Control di kanan atas hanya untuk memilih Peta Dasar (Basemaps)
+L.control.layers(baseMaps, null, {
   position: 'topright',
   collapsed: true
 }).addTo(map);
@@ -383,14 +375,6 @@ function bindCheckboxLayer(checkboxId, layer) {
     } else {
       if (map.hasLayer(layer)) map.removeLayer(layer);
     }
-  });
-
-  // Sync saat di-toggle dari Layer Control kanan atas
-  map.on('overlayadd', function(e) {
-    if (e.layer === layer) chk.checked = true;
-  });
-  map.on('overlayremove', function(e) {
-    if (e.layer === layer) chk.checked = false;
   });
 }
 
