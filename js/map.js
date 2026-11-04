@@ -576,7 +576,7 @@ function initCharts() {
   const dataWismaVal = rekap.map(r => r.wisma || 0);
   const dataPenginapanVal = rekap.map(r => r.penginapan || 0);
 
-  // 1. Bar Chart: Wisata vs Tipe Akomodasi per Kecamatan
+  // 1. Bar Chart: Wisata vs Komposisi Akomodasi (Dual-Stack per Kecamatan)
   const ctxBar = document.getElementById('chart-kecamatan');
   if (ctxBar) {
     new Chart(ctxBar, {
@@ -588,47 +588,69 @@ function initCharts() {
             label: 'Wisata (12)',
             data: dataWisataVal,
             backgroundColor: '#10b981',
-            borderRadius: 4
+            stack: 'wisata',
+            borderRadius: 6,
+            barPercentage: 0.8,
+            categoryPercentage: 0.8
           },
           {
-            label: 'Hotel (10)',
+            label: 'Hotel Bintang (10)',
             data: dataHotelVal,
             backgroundColor: '#0284c7',
-            borderRadius: 4
+            stack: 'akomodasi',
+            borderRadius: 4,
+            barPercentage: 0.8,
+            categoryPercentage: 0.8
           },
           {
-            label: 'Wisma (7)',
+            label: 'Wisma & Guest House (7)',
             data: dataWismaVal,
-            backgroundColor: '#6366f1',
-            borderRadius: 4
+            backgroundColor: '#8b5cf6',
+            stack: 'akomodasi',
+            borderRadius: 4,
+            barPercentage: 0.8,
+            categoryPercentage: 0.8
           },
           {
-            label: 'Penginapan (5)',
+            label: 'Penginapan & Homestay (5)',
             data: dataPenginapanVal,
-            backgroundColor: '#0d9488',
-            borderRadius: 4
+            backgroundColor: '#f59e0b',
+            stack: 'akomodasi',
+            borderRadius: 4,
+            barPercentage: 0.8,
+            categoryPercentage: 0.8
           }
         ]
       },
       options: {
         responsive: true,
         plugins: {
-          legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9.5 } } },
+          legend: {
+            position: 'bottom',
+            labels: { boxWidth: 10, font: { size: 9.5 }, padding: 8 }
+          },
           tooltip: {
             callbacks: {
-              footer: function(tooltipItems) {
-                let total = 0;
-                tooltipItems.forEach(function(tooltipItem) {
-                  total += tooltipItem.parsed.y;
-                });
-                return 'Total: ' + total;
+              afterBody: function(context) {
+                const idx = context[0].dataIndex;
+                const r = rekap[idx];
+                return `Total Akomodasi: ${r.total_akomodasi} Unit`;
               }
             }
           }
         },
         scales: {
-          y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: 9 } } },
-          x: { ticks: { font: { size: 9.5 } } }
+          x: {
+            stacked: true,
+            ticks: { font: { size: 10, weight: '600' } },
+            grid: { display: false }
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true,
+            ticks: { stepSize: 2, font: { size: 9 } },
+            title: { display: true, text: 'Jumlah Unit / Objek', font: { size: 9.5 } }
+          }
         }
       }
     });
