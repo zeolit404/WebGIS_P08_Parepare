@@ -42,8 +42,8 @@ Dokumen ini disusun untuk memudahkan pembuatan laporan akhir di Claude sesuai te
 | 1 | Batas Administrasi Kecamatan | Polygon (4 fitur) | Ina-Geoportal Badan Informasi Geospasial (BIG), 2024 | Unduh data vektor RBI skala 1:50.000 via portal tanahair.indonesia.go.id | Lisensi Data Terbuka BIG |
 | 2 | Data Demografi & Kewilayahan | Tabular | BPS Kota Parepare ("Kota Parepare Dalam Angka 2024") | Unduh publikasi resmi BPS Kota Parepare | Terbuka / BPS |
 | 3 | Titik Destinasi Wisata | Point (12 fitur) | OpenStreetMap (OSM) & Disporapar Parepare (2024/2025) | Ekstraksi titik pariwisata via Nominatim/OSM dan verifikasi koordinat | Open Database License (ODbL) |
-| 4 | Titik Hotel & Akomodasi | Point (10 fitur) | OpenStreetMap (OSM) & PHRI Parepare (2024/2025) | Ekstraksi POI perhotelan dari OSM dan verifikasi lapangan digital | Open Database License (ODbL) |
-| 5 | Buffer Jangkauan Hotel (2 Km) | MultiPolygon | Hasil Olahan Analisis Spasial (Turf.js) | Geodesic buffer 2.000 meter terhadap titik hotel | Data Hasil Analisis |
+| 4 | Titik Akomodasi (Hotel, Wisma, Penginapan) | Point (22 fitur) | OpenStreetMap (OSM), PHRI & Direktori Parepare (2024/2025) | Ekstraksi POI perhotelan, wisma, dan homestay dari OSM & verifikasi lapangan digital | Open Database License (ODbL) |
+| 5 | Buffer Jangkauan Akomodasi (2 Km) | MultiPolygon | Hasil Olahan Analisis Spasial (Turf.js) | Geodesic buffer 2.000 meter terhadap 22 titik akomodasi | Data Hasil Analisis |
 
 ---
 
@@ -65,7 +65,7 @@ Dokumen ini disusun untuk memudahkan pembuatan laporan akhir di Claude sesuai te
 | **Nama analisis** | Analisis Buffer Aksesibilitas Fasilitas Akomodasi (Radius 2 Km) & Point-in-Polygon Keterjangkauan Wisata. |
 | **Alat/fungsi yang dipakai** | `turf.buffer(point, 2, {units: 'kilometers'})`, `turf.union()`, dan `turf.distance()` (Haversine formula). |
 | **Langkah atau kode SQL/JS** | 1. Membuat buffer 2 km dari setiap titik hotel.<br>2. Menggabungkan (union) seluruh buffer menjadi *service coverage area*.<br>3. Menghitung jarak geodesik setiap objek wisata ke hotel terdekat.<br>4. Mengklasifikasi: Terjangkau (≤ 2 km) vs Belum Terjangkau (> 2 km). |
-| **Hasil utama (angka penting)** | &bull; Total Objek Wisata: **12 destinasi**.<br>&bull; Wisata Terjangkau Hotel (≤ 2 km): **8 objek (66,7% &asymp; 67%)**.<br>&bull; Wisata Belum Terjangkau Hotel (> 2 km): **4 objek (33,3% &asymp; 33%)**.<br>&bull; Rekap per kecamatan: Ujung (100% terjangkau, 6 hotel), Bacukiki Barat (100% terjangkau, 3 hotel), Soreang (67% terjangkau, 1 hotel), Bacukiki (0% terjangkau, 0 hotel &mdash; **Blank Spot**). |
+| **Hasil utama (angka penting)** | &bull; Total Objek Wisata: **12 destinasi**.<br>&bull; Total Fasilitas Akomodasi: **22 unit** (10 Hotel, 7 Wisma, 5 Penginapan/Homestay).<br>&bull; Wisata Terjangkau Akomodasi (≤ 2 km): **11 objek (91,7% &asymp; 92%)**.<br>&bull; Wisata Belum Terjangkau (> 2 km): **1 objek (8,3% &asymp; 8%)**, yaitu Salatiga Hills di puncak Bacukiki (2,6 km ke penginapan terdekat).<br>&bull; Rekap per kecamatan: Ujung (100% terjangkau, 11 akomodasi), Bacukiki Barat (100% terjangkau, 6 akomodasi), Soreang (100% terjangkau, 3 akomodasi), Bacukiki (67% terjangkau, 2 homestay/penginapan alam). |
 | **Cara memastikan hasil benar** | Memvalidasi jarak lurus manual di peta menggunakan skala metrik dan cross-check dengan koordinat Haversine formula. |
 
 ---
@@ -98,7 +98,7 @@ Dokumen ini disusun untuk memudahkan pembuatan laporan akhir di Claude sesuai te
 |:---|:---|
 | **Dibuka di browser lain** | Berhasil diuji pada Microsoft Edge, Google Chrome, dan Mozilla Firefox dengan tampilan konsisten. |
 | **Dibuka di HP / layar kecil** | Responsif: Navbar menyesuaikan ukuran, sidebar dapat di-collapse, panel kontrol tetap mudah diakses. |
-| **Angka di WebGIS = hasil analisis** | Sinkron 100%: Total 12 wisata, 8 terjangkau (67%), 4 belum terjangkau (33%), 10 hotel. |
+| **Angka di WebGIS = hasil analisis** | Sinkron 100%: Total 12 wisata, 22 akomodasi (10 hotel, 7 wisma, 5 penginapan), 11 terjangkau (92%), 1 belum terjangkau (8%). |
 | **Alamat publik (jika diunggah)** | `http://localhost:3000` (Lokal) / GitHub Pages repository. |
 | **Tautan video demo** | Diisi tautan video rekaman layar (≤ 3 menit). |
 
@@ -106,7 +106,7 @@ Dokumen ini disusun untuk memudahkan pembuatan laporan akhir di Claude sesuai te
 
 ### A9. Interpretasi dan Refleksi
 * **Jawaban atas pertanyaan di A1**:
-  Sebanyak **66,7% (8 destinasi)** wisata di Kota Parepare sudah memiliki aksesibilitas akomodasi yang sangat baik dalam radius 2 km, terkonsentrasi di kawasan pesisir dan perkotaan (Kecamatan Ujung dan Bacukiki Barat). Namun, terdapat kesenjangan signifikan di **Kecamatan Bacukiki**, di mana ketiga destinasi wisatanya (Ladoma, Salatiga Hills, Waterboom) berada di luar radius 2 km dari hotel manapun (0% terlayani). Hal ini menunjukkan potensi besar pengembangan homestay atau *resort* berbasis alam di Bacukiki.
+  Dengan memperhitungkan seluruh spektrum akomodasi (hotel berbintang, wisma, hingga penginapan/homestay), sebanyak **91,7% (11 dari 12 destinasi wisata)** di Kota Parepare telah terlayani akomodasi dalam radius 2 km. Tiga kecamatan pesisir dan perkotaan (Ujung, Bacukiki Barat, Soreang) memiliki aksesibilitas 100%. Hanya ada 1 destinasi wisata yang berada di luar jangkauan 2 km yaitu **Salatiga Hills** di daerah perbukitan Lemoe Bacukiki (berjarak 2,6 km dari homestay terdekat), yang cocok diarahkan untuk pengembangan konsep *glamping* (glamorous camping) atau ecotourism lodge.
 * **Kendala terbesar & cara mengatasinya**:
   Kendala ketersediaan data spasial batas kecamatan yang bersih diatasi dengan mengonversi dan memfilter shapefile resmi Ina-Geoportal BIG dari 8 kecamatan regional menjadi 4 kecamatan murni Kota Parepare, serta menyatukan atribut demografi BPS secara otomatis melalui skrip Node.js.
 * **Jika diberi waktu lebih, apa yang ingin ditambahkan?**:

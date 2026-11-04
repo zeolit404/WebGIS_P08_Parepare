@@ -14,19 +14,18 @@ Dosen: Andang Suryana Soma, S.Hut., M.P., Ph.D.
    - Publikasi: "Kota Parepare Dalam Angka 2024"
    - Atribut: Luas wilayah (km²), Jumlah Penduduk (jiwa), Kepadatan, Jumlah Kelurahan
 
-3. Titik Objek Wisata:
-   - Sumber: OpenStreetMap (OSM) Contributors & Dinas Kepemudaan, Olahraga, dan Pariwisata (Disporapar) Kota Parepare
+3. Titik Objek Wisata (12 Destinasi):
+   - Sumber: OpenStreetMap (OSM) Contributors & Disporapar Kota Parepare (2024/2025)
    - Lisensi: Open Database License (ODbL)
-   - Tahun: 2024 / 2025
-   - Total Fitur: 12 Objek Wisata
 
-4. Titik Hotel & Akomodasi:
-   - Sumber: OpenStreetMap (OSM) Contributors & Perhimpunan Hotel dan Restoran Indonesia (PHRI) BPC Parepare
+4. Titik Akomodasi (22 Unit: Hotel, Wisma, Penginapan, Guest House):
+   - Sumber: OpenStreetMap (OSM) Contributors, PHRI Parepare, dan Direktori Penginapan Kota Parepare (2024/2025)
+   - Klasifikasi:
+     * 10 Hotel (Bintang 1, 2, 3 & Melati)
+     * 7 Wisma & Guest House
+     * 5 Penginapan & Homestay
    - Lisensi: Open Database License (ODbL)
-   - Tahun: 2024 / 2025
-   - Total Fitur: 10 Hotel / Akomodasi
 
-5. Analisis Spasial:
+5. Analisis Spasial Jangkauan Layanan:
    - Metode: Geodesic Buffer Jangkauan Layanan 2 Km (Turf.js)
-   - Analisis Point in Polygon / Near Distance
    - Klasifikasi: Terjangkau (<= 2 km) vs Belum Terjangkau (> 2 km)

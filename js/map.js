@@ -197,10 +197,20 @@ if (typeof dataBufferHotel !== 'undefined') {
 }
 
 /* ================= 5. LAYER HOTEL ================= */
-function createHotelIcon() {
+function createHotelIcon(tipe = 'Hotel') {
+  let pinClass = 'pin-hotel';
+  let iconName = 'fa-hotel';
+  if (tipe === 'Wisma') {
+    pinClass = 'pin-wisma';
+    iconName = 'fa-house-user';
+  } else if (tipe === 'Penginapan') {
+    pinClass = 'pin-penginapan';
+    iconName = 'fa-bed';
+  }
+
   return L.divIcon({
     className: 'custom-pin-container',
-    html: `<div class="custom-pin pin-hotel" title="Hotel / Akomodasi"><i class="fa-solid fa-hotel"></i></div>`,
+    html: `<div class="custom-pin ${pinClass}" title="${tipe}"><i class="fa-solid ${iconName}"></i></div>`,
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -30]
@@ -211,7 +221,7 @@ if (typeof dataHotel !== 'undefined') {
   dataHotel.features.forEach(h => {
     const p = h.properties;
     const marker = L.marker([p.latitude, p.longitude], {
-      icon: createHotelIcon()
+      icon: createHotelIcon(p.tipe)
     });
 
     const popupContent = `

@@ -357,13 +357,13 @@
         <i class="fa-solid fa-umbrella-beach"></i> Objek Wisata <span class="badge-count" id="count-tab-wisata">12</span>
       </button>
       <button class="tab-btn" onclick="switchTab('hotel')">
-        <i class="fa-solid fa-hotel"></i> Hotel & Akomodasi <span class="badge-count" id="count-tab-hotel">10</span>
+        <i class="fa-solid fa-hotel"></i> Akomodasi & Penginapan <span class="badge-count" id="count-tab-hotel">22</span>
       </button>
       <button class="tab-btn" onclick="switchTab('kecamatan')">
         <i class="fa-solid fa-draw-polygon"></i> Batas Kecamatan (BPS & BIG) <span class="badge-count" id="count-tab-kecamatan">4</span>
       </button>
       <button class="tab-btn" onclick="switchTab('analisis')">
-        <i class="fa-solid fa-chart-pie"></i> Rekap Analisis Buffer 2 Km <span class="badge-count">67%</span>
+        <i class="fa-solid fa-chart-pie"></i> Rekap Analisis Buffer 2 Km <span class="badge-count">92%</span>
       </button>
     </div>
 
@@ -427,9 +427,15 @@
       <div class="toolbar">
         <div class="search-box">
           <i class="fa-solid fa-magnifying-glass" style="color: #94a3b8;"></i>
-          <input type="text" id="cari-hotel" placeholder="Cari nama hotel, bintang, atau alamat...">
+          <input type="text" id="cari-hotel" placeholder="Cari nama akomodasi, wisma, penginapan...">
         </div>
         <div class="toolbar-actions">
+          <select id="filter-tipe-hotel" class="select-filter">
+            <option value="ALL">Semua Tipe (Hotel, Wisma, Penginapan)</option>
+            <option value="Hotel">Hotel</option>
+            <option value="Wisma">Wisma / Guest House</option>
+            <option value="Penginapan">Penginapan / Homestay</option>
+          </select>
           <select id="filter-kec-hotel" class="select-filter">
             <option value="ALL">Semua Kecamatan</option>
             <option value="Ujung">Kec. Ujung</option>
@@ -437,10 +443,10 @@
             <option value="Soreang">Kec. Soreang</option>
             <option value="Bacukiki">Kec. Bacukiki</option>
           </select>
-          <button class="btn-export" onclick="exportTableToCSV('tabel-hotel-body', 'hotel_parepare.csv')">
+          <button class="btn-export" onclick="exportTableToCSV('tabel-hotel-body', 'akomodasi_parepare.csv')">
             <i class="fa-solid fa-file-csv"></i> Export CSV
           </button>
-          <span class="badge-info" id="info-jumlah-hotel">10 Fitur</span>
+          <span class="badge-info" id="info-jumlah-hotel">22 Fitur</span>
         </div>
       </div>
 
@@ -450,7 +456,8 @@
             <thead>
               <tr>
                 <th style="width: 40px;">No</th>
-                <th>Nama Hotel / Akomodasi</th>
+                <th>Nama Tempat Akomodasi</th>
+                <th>Tipe</th>
                 <th>Klasifikasi / Kategori</th>
                 <th>Kecamatan</th>
                 <th>Alamat Lengkap</th>
@@ -464,7 +471,7 @@
           </table>
         </div>
         <div class="table-footer">
-          <span>Sumber: OpenStreetMap Contributors & PHRI Kota Parepare (2024/2025)</span>
+          <span>Sumber: OpenStreetMap Contributors, PHRI & Direktori Penginapan Kota Parepare (2024/2025)</span>
           <span>Sistem Koordinat: WGS84 (EPSG:4326)</span>
         </div>
       </div>
@@ -589,28 +596,38 @@
       document.getElementById('info-jumlah-wisata').textContent = filtered.length + ' Fitur';
     }
 
-    // 2. RENDER TABEL HOTEL
+    // 2. RENDER TABEL HOTEL & PENGINAPAN
     function renderTabelHotel() {
       if (typeof dataHotel === 'undefined') return;
       const tbody = document.getElementById('tabel-hotel-body');
       const q = document.getElementById('cari-hotel').value.toLowerCase();
+      const tipe = document.getElementById('filter-tipe-hotel').value;
       const kec = document.getElementById('filter-kec-hotel').value;
 
       const filtered = dataHotel.features.filter(f => {
         const p = f.properties;
         const matchQ = p.nama.toLowerCase().includes(q) || p.kategori.toLowerCase().includes(q) || p.alamat.toLowerCase().includes(q);
+        const matchTipe = (tipe === 'ALL' || p.tipe === tipe);
         const matchKec = (kec === 'ALL' || p.kecamatan === kec);
-        return matchQ && matchKec;
+        return matchQ && matchTipe && matchKec;
       });
 
       tbody.innerHTML = filtered.map((f, i) => {
         const p = f.properties;
         const [lon, lat] = f.geometry.coordinates;
+        let badgeColor = 'primary';
+        if (p.tipe === 'Wisma') badgeColor = 'status-pill' style="background: #e0e7ff; color: #4338ca;";
+        
+        let typeBadge = `<span class="status-pill primary">${p.tipe}</span>`;
+        if (p.tipe === 'Wisma') typeBadge = `<span class="status-pill" style="background:#e0e7ff; color:#4338ca;">Wisma</span>`;
+        if (p.tipe === 'Penginapan') typeBadge = `<span class="status-pill" style="background:#ccfbf1; color:#0f766e;">Penginapan</span>`;
+
         return `
           <tr>
             <td>${i + 1}</td>
             <td><strong>${p.nama}</strong></td>
-            <td><span class="status-pill primary">${p.kategori}</span></td>
+            <td>${typeBadge}</td>
+            <td><span class="status-pill" style="background:#f1f5f9; color:#334155;">${p.kategori}</span></td>
             <td>${p.kecamatan}</td>
             <td>${p.alamat}</td>
             <td style="color: #0284c7; font-weight: 600;">${p.kisaran_harga}</td>
@@ -708,6 +725,7 @@
     document.getElementById('filter-status-wisata').addEventListener('change', renderTabelWisata);
 
     document.getElementById('cari-hotel').addEventListener('input', renderTabelHotel);
+    document.getElementById('filter-tipe-hotel').addEventListener('change', renderTabelHotel);
     document.getElementById('filter-kec-hotel').addEventListener('change', renderTabelHotel);
 
     // Initial load

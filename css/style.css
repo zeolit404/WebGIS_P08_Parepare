@@ -739,6 +739,14 @@ body {
   background: linear-gradient(135deg, #0284c7, #0369a1);
 }
 
+.pin-wisma {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+.pin-penginapan {
+  background: linear-gradient(135deg, #0d9488, #0f766e);
+}
+
 .pin-wisata-covered {
   background: linear-gradient(135deg, #10b981, #059669);
 }

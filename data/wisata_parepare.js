@@ -17,9 +17,10 @@ const dataWisata = {
         "fasilitas": "Spot Foto, Taman Terbuka, Bangku Taman, Area Kuliner",
         "terjangkau_hotel_2km": true,
         "status_akses": "Terjangkau (≤ 2 km)",
-        "hotel_terdekat": "Hotel Mario & Cafe",
-        "jarak_ke_hotel_m": 562,
-        "jarak_ke_hotel_km": "0.56"
+        "hotel_terdekat": "Penginapan Sejahtera Pelabuhan",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 87,
+        "jarak_ke_hotel_km": "0.09"
       },
       "geometry": {
         "type": "Point",
@@ -45,9 +46,10 @@ const dataWisata = {
         "fasilitas": "Jogging Track, Gazebo, Tempat Duduk, Kuliner Seafood",
         "terjangkau_hotel_2km": true,
         "status_akses": "Terjangkau (≤ 2 km)",
-        "hotel_terdekat": "Pare Beach Hotel",
-        "jarak_ke_hotel_m": 248,
-        "jarak_ke_hotel_km": "0.25"
+        "hotel_terdekat": "Wisma Mario Indah Mattirotasi",
+        "tipe_akomodasi_terdekat": "Wisma",
+        "jarak_ke_hotel_m": 141,
+        "jarak_ke_hotel_km": "0.14"
       },
       "geometry": {
         "type": "Point",
@@ -73,9 +75,10 @@ const dataWisata = {
         "fasilitas": "Jembatan Layang, Kuliner Bahari, Musholla, Toilet, Parkir Luas",
         "terjangkau_hotel_2km": true,
         "status_akses": "Terjangkau (≤ 2 km)",
-        "hotel_terdekat": "Hotel Kenari Bukit Resort",
-        "jarak_ke_hotel_m": 476,
-        "jarak_ke_hotel_km": "0.48"
+        "hotel_terdekat": "Wisma Mutiara Sudirman",
+        "tipe_akomodasi_terdekat": "Wisma",
+        "jarak_ke_hotel_m": 376,
+        "jarak_ke_hotel_km": "0.38"
       },
       "geometry": {
         "type": "Point",
@@ -101,9 +104,10 @@ const dataWisata = {
         "fasilitas": "Menara Pandang, Jalur Treking, Kolam Renang, Camping Ground, Musholla",
         "terjangkau_hotel_2km": true,
         "status_akses": "Terjangkau (≤ 2 km)",
-        "hotel_terdekat": "Hotel Musa Pratama",
-        "jarak_ke_hotel_m": 1429,
-        "jarak_ke_hotel_km": "1.43"
+        "hotel_terdekat": "Penginapan Pondok Asri Soreang",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 494,
+        "jarak_ke_hotel_km": "0.49"
       },
       "geometry": {
         "type": "Point",
@@ -129,9 +133,10 @@ const dataWisata = {
         "fasilitas": "Plakat Sejarah, Area Penghijauan, Area Parkir",
         "terjangkau_hotel_2km": true,
         "status_akses": "Terjangkau (≤ 2 km)",
-        "hotel_terdekat": "Hotel Bugis",
-        "jarak_ke_hotel_m": 344,
-        "jarak_ke_hotel_km": "0.34"
+        "hotel_terdekat": "Wisma Melati Indah",
+        "tipe_akomodasi_terdekat": "Wisma",
+        "jarak_ke_hotel_m": 290,
+        "jarak_ke_hotel_km": "0.29"
       },
       "geometry": {
         "type": "Point",
@@ -158,6 +163,7 @@ const dataWisata = {
         "terjangkau_hotel_2km": true,
         "status_akses": "Terjangkau (≤ 2 km)",
         "hotel_terdekat": "Hotel Puri Gandaria",
+        "tipe_akomodasi_terdekat": "Hotel",
         "jarak_ke_hotel_m": 498,
         "jarak_ke_hotel_km": "0.50"
       },
@@ -185,9 +191,10 @@ const dataWisata = {
         "fasilitas": "Ruang Galeri Ber-AC, Pemandu Wisata, Teater Mini, Toilet",
         "terjangkau_hotel_2km": true,
         "status_akses": "Terjangkau (≤ 2 km)",
-        "hotel_terdekat": "Hotel Permata Sari",
-        "jarak_ke_hotel_m": 389,
-        "jarak_ke_hotel_km": "0.39"
+        "hotel_terdekat": "Wisma Melati Indah",
+        "tipe_akomodasi_terdekat": "Wisma",
+        "jarak_ke_hotel_m": 102,
+        "jarak_ke_hotel_km": "0.10"
       },
       "geometry": {
         "type": "Point",
@@ -211,11 +218,12 @@ const dataWisata = {
         "tiket": "Rp 10.000 / orang",
         "deskripsi": "Destinasi agrowisata dan outbound dengan aliran sungai bebatuan alami, gazebo bambu tradisional, dan pemandangan lembah perbukitan Bacukiki.",
         "fasilitas": "Flying Fox, Kolam Alami, Gazebo Lembah, Warung Makanan",
-        "terjangkau_hotel_2km": false,
-        "status_akses": "Belum Terjangkau (> 2 km)",
-        "hotel_terdekat": "Hotel Puri Gandaria",
-        "jarak_ke_hotel_m": 2904,
-        "jarak_ke_hotel_km": "2.90"
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Homestay Syariah Bacukiki",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 952,
+        "jarak_ke_hotel_km": "0.95"
       },
       "geometry": {
         "type": "Point",
@@ -241,9 +249,10 @@ const dataWisata = {
         "fasilitas": "Area Bermain Anak, Bangku Taman, Air Mancur, Lampu Hias",
         "terjangkau_hotel_2km": true,
         "status_akses": "Terjangkau (≤ 2 km)",
-        "hotel_terdekat": "Hotel Pare Wisata",
-        "jarak_ke_hotel_m": 1669,
-        "jarak_ke_hotel_km": "1.67"
+        "hotel_terdekat": "Wisma Bintang Soreang",
+        "tipe_akomodasi_terdekat": "Wisma",
+        "jarak_ke_hotel_m": 297,
+        "jarak_ke_hotel_km": "0.30"
       },
       "geometry": {
         "type": "Point",
@@ -267,11 +276,12 @@ const dataWisata = {
         "tiket": "Gratis",
         "deskripsi": "Ruang publik pesisir terbaru di kawasan Soreang dengan dermaga pejalan kaki menjorok ke laut, spot foto kekinian, dan pusat jajanan UMKM.",
         "fasilitas": "Anjungan Laut, Sentra Kuliner UMKM, Spot Foto Sunset, Toilet",
-        "terjangkau_hotel_2km": false,
-        "status_akses": "Belum Terjangkau (> 2 km)",
-        "hotel_terdekat": "Hotel Pare Wisata",
-        "jarak_ke_hotel_m": 2384,
-        "jarak_ke_hotel_km": "2.38"
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Wisma Bintang Soreang",
+        "tipe_akomodasi_terdekat": "Wisma",
+        "jarak_ke_hotel_m": 467,
+        "jarak_ke_hotel_km": "0.47"
       },
       "geometry": {
         "type": "Point",
@@ -295,11 +305,12 @@ const dataWisata = {
         "tiket": "Rp 25.000 / orang",
         "deskripsi": "Wahana rekreasi air keluarga terlengkap di Ajatappareng dengan berbagai seluncuran air, kolam arus, dan kolam tumpah anak.",
         "fasilitas": "Water Slide, Kolam Arus, Loker, Kantin, Gazebo",
-        "terjangkau_hotel_2km": false,
-        "status_akses": "Belum Terjangkau (> 2 km)",
-        "hotel_terdekat": "Hotel Musa Pratama",
-        "jarak_ke_hotel_m": 3195,
-        "jarak_ke_hotel_km": "3.19"
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Penginapan Lembah Hijau Bacukiki",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 716,
+        "jarak_ke_hotel_km": "0.72"
       },
       "geometry": {
         "type": "Point",
@@ -325,9 +336,10 @@ const dataWisata = {
         "fasilitas": "Gardu Pandang, Kafe Puncak, Spot Foto Bunga, Parkir Motor",
         "terjangkau_hotel_2km": false,
         "status_akses": "Belum Terjangkau (> 2 km)",
-        "hotel_terdekat": "Hotel Puri Gandaria",
-        "jarak_ke_hotel_m": 5239,
-        "jarak_ke_hotel_km": "5.24"
+        "hotel_terdekat": "Homestay Syariah Bacukiki",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 3222,
+        "jarak_ke_hotel_km": "3.22"
       },
       "geometry": {
         "type": "Point",
