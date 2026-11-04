@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Lembar Tugas Praktikum Pertemuan 08 - M. Arief Abdillah (V126241003)</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 15mm 15mm 15mm 15mm;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      font-size: 10pt;
+      line-height: 1.45;
+      color: #1f2937;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }
+    .header-box {
+      border-bottom: 2.5px solid #1e3a8a;
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-text {
+      text-align: center;
+      flex-grow: 1;
+    }
+    .header-text h1 {
+      font-size: 13pt;
+      font-weight: 800;
+      color: #1e3a8a;
+      margin: 0 0 3px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .header-text h2 {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 3px 0;
+    }
+    .header-text p {
+      font-size: 8.5pt;
+      color: #4b5563;
+      margin: 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 8pt;
+      font-weight: 600;
+    }
+    .badge-primary { background: #dbeafe; color: #1e40af; }
+    .badge-success { background: #dcfce7; color: #15803d; }
+    .badge-warning { background: #fef3c7; color: #b45309; }
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #1e3a8a;
+      background: #f1f5f9;
+      padding: 5px 10px;
+      border-left: 4px solid #2563eb;
+      margin: 14px 0 8px 0;
+      text-transform: uppercase;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+      font-size: 9pt;
+      page-break-inside: avoid;
+    }
+    table, th, td {
+      border: 1px solid #cbd5e1;
+    }
+    th {
+      background: #f8fafc;
+      color: #1e293b;
+      font-weight: 700;
+      padding: 6px 8px;
+      text-align: left;
+    }
+    td {
+      padding: 5px 8px;
+      vertical-align: top;
+    }
+    tr:nth-child(even) td {
+      background: #fbfcfe;
+    }
+    .col-label {
+      width: 25%;
+      font-weight: 600;
+      background: #f8fafc;
+      color: #334155;
+    }
+
+    .screenshot-card {
+      margin: 10px 0;
+      text-align: center;
+      page-break-inside: avoid;
+    }
+    .screenshot-img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .caption {
+      font-size: 8pt;
+      color: #475569;
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    .two-col-img {
+      display: flex;
+      gap: 10px;
+      margin: 10px 0;
+      page-break-inside: avoid;
+    }
+    .two-col-img > div {
+      flex: 1;
+      text-align: center;
+    }
+    .two-col-img img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+    }
+
+    .page-break {
+      page-break-after: always;
+    }
+
+    ul, ol {
+      margin: 4px 0 6px 18px;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 3px;
+    }
+
+    .url-link {
+      color: #1d4ed8;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+
+    .footer-note {
+      font-size: 7.5pt;
+      color: #64748b;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 6px;
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header-box">
+    <div class="header-text">
+      <h1>UNIVERSITAS HASANUDDIN &bull; DEPARTEMEN KEHUTANAN</h1>
+      <h2>PRAKTIKUM PENGELOLAAN BIG DATA DAN WEBGIS (PERTEMUAN 08)</h2>
+      <p>Dosen Pengampu: Andang Suryana Soma, S.Hut., M.P., Ph.D. &bull; Semester Genap / Ganjil 2024–2025</p>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-bottom: 12px;">
+    <h3 style="margin: 0; font-size: 11pt; color: #1e3a8a; letter-spacing: 0.3px;">
+      LAMPIRAN A: LEMBAR TUGAS MAHASISWA &mdash; MEMBUAT WEBGIS SENDIRI DARI NOL
+    </h3>
+  </div>
+
+  <!-- A0. IDENTITAS -->
+  <div class="section-title">A0. Identitas Mahasiswa & WebGIS</div>
+  <table>
+    <tr>
+      <td class="col-label">Nama / NIM</td>
+      <td><strong>M. ARIEF ABDILLAH</strong> &nbsp;/&nbsp; <strong>V126241003</strong></td>
+    </tr>
+    <tr>
+      <td class="col-label">Judul WebGIS</td>
+      <td><strong>WebGIS Analisis Spasial Aksesibilitas Destinasi Wisata terhadap Fasilitas Akomodasi Hotel (Radius 2 Km) di Kota Parepare</strong></td>
+    </tr>
+    <tr>
+      <td class="col-label">Wilayah Kajian</td>
+      <td>Kota Parepare, Provinsi Sulawesi Selatan (Mencakup 4 Kecamatan: Bacukiki, Bacukiki Barat, Soreang, dan Ujung)</td>
+    </tr>
+    <tr>
+      <td class="col-label">Cara yang Dipilih</td>
+      <td><span class="badge badge-primary">Jalur A (Dengan Coding)</span> &mdash; Menggunakan Stack: HTML5, CSS3 Glassmorphism, JavaScript (ES6+), Leaflet.js v1.9.4, Turf.js, Chart.js, dan Node.js HTTP Server.</td>
+    </tr>
+    <tr>
+      <td class="col-label">Alamat / Tautan WebGIS</td>
+      <td>
+        &bull; <strong>Live WebGIS (GitHub Pages):</strong> <a class="url-link" href="https://zeolit404.github.io/WebGIS_P08_Parepare/">https://zeolit404.github.io/WebGIS_P08_Parepare/</a><br>
+        &bull; <strong>Tabel Atribut Online:</strong> <a class="url-link" href="https://zeolit404.github.io/WebGIS_P08_Parepare/tabel_atribut.html">https://zeolit404.github.io/WebGIS_P08_Parepare/tabel_atribut.html</a><br>
+        &bull; <strong>Repositori GitHub:</strong> <a class="url-link" href="https://github.com/zeolit404/WebGIS_P08_Parepare">https://github.com/zeolit404/WebGIS_P08_Parepare</a><br>
+        &bull; <strong>Server Lokal Pengujian:</strong> <code>http://localhost:3000</code>
+      </td>
+    </tr>
+  </table>
+
+  <!-- A1. TAHAP 1 -->
+  <div class="section-title">A1. Tahap 1 &mdash; Tujuan dan Pertanyaan Analisis</div>
+  <table>
+    <tr>
+      <td class="col-label">Tujuan (1 kalimat)</td>
+      <td>Menganalisis jangkauan aksesibilitas spasial fasilitas akomodasi perhotelan terhadap sebaran destinasi wisata di Kota Parepare menggunakan analisis buffer radius 2 kilometer guna memetakan objek wisata yang terlayani dan mendeteksi area <em>blank spot</em>.</td>
+    </tr>
+    <tr>
+      <td class="col-label">Pengguna Sasaran</td>
+      <td>Dinas Kepemudaan, Olahraga, dan Pariwisata (Disporapar) Kota Parepare, Badan Perencanaan Pembangunan Daerah (Bappeda), Perhimpunan Hotel dan Restoran Indonesia (PHRI), calon investor pariwisata/akomodasi, serta wisatawan umum.</td>
+    </tr>
+    <tr>
+      <td class="col-label">Pertanyaan 1</td>
+      <td>Berapa persentase dan jumlah destinasi wisata di Kota Parepare yang berada di dalam jangkauan aksesibilitas hotel dalam radius 2 km?</td>
+    </tr>
+    <tr>
+      <td class="col-label">Pertanyaan 2</td>
+      <td>Kecamatan mana yang memiliki tingkat jangkauan akomodasi tertinggi (100%) dan di mana lokasi titik wisata yang belum terlayani akomodasi (<em>blank spot</em>)?</td>
+    </tr>
+    <tr>
+      <td class="col-label">Pertanyaan 3 (Tambahan)</td>
+      <td>Fasilitas akomodasi hotel mana yang menjadi rujukan terdekat untuk tiap destinasi wisata, dan berapa jarak geodesik riilnya?</td>
+    </tr>
+  </table>
+
+  <!-- A2. TAHAP 2 -->
+  <div class="section-title">A2. Tahap 2 &mdash; Pilihan Platform</div>
+  <table>
+    <tr>
+      <td class="col-label">Platform/Alat yang Dipakai</td>
+      <td>Leaflet.js (v1.9.4), Turf.js (Geospatial Analysis Engine), Chart.js, Node.js HTTP Server, HTML5 Canvas/DOM, CSS3 Modern Glassmorphism.</td>
+    </tr>
+    <tr>
+      <td class="col-label">Alasan Memilih</td>
+      <td>Berdasarkan pohon keputusan Modul Praktikum (Gambar 4), <strong>Jalur A (Dengan Coding)</strong> dipilih karena memerlukan pemrosesan spasial dinamis di sisi klien (geodesic buffer radius 2 km secara instan, kalkulasi jarak geodesik Haversine ke hotel terdekat, serta interaksi visual dua arah antara titik peta, popup, dan grafik Chart.js).</td>
+    </tr>
+    <tr>
+      <td class="col-label">Kekurangan Platform</td>
+      <td>Memerlukan pemahaman arsitektur web, penulisan algoritma JavaScript, dan penanganan format koordinat secara mandiri dibandingkan dengan alat <em>no-code/GUI</em> seperti qgis2web, namun menawarkan kebebasan penuh dalam estetika antarmuka, performa kilat, dan fleksibilitas kustomisasi fitur.</td>
+    </tr>
+  </table>
+
+  <!-- A3. TAHAP 3 -->
+  <div class="section-title">A3. Tahap 3 &mdash; Data yang Dikumpulkan</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 5%; text-align: center;">No</th>
+        <th style="width: 25%;">Nama Layer</th>
+        <th style="width: 14%;">Geometri</th>
+        <th style="width: 26%;">Sumber & Tahun</th>
+        <th style="width: 30%;">Cara Memperoleh & Lisensi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: center;">1</td>
+        <td><strong>Batas Administrasi Kecamatan</strong></td>
+        <td>Polygon (4 fitur)</td>
+        <td>Ina-Geoportal Badan Informasi Geospasial (BIG), 2024</td>
+        <td>Unduh data vektor RBI skala 1:50.000 via portal tanahair.indonesia.go.id. Lisensi Data Terbuka BIG.</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">2</td>
+        <td><strong>Data Demografi & Luas Wilayah</strong></td>
+        <td>Tabular (CSV/JSON)</td>
+        <td>BPS Kota Parepare ("Kota Parepare Dalam Angka 2024")</td>
+        <td>Ekstraksi data kependudukan dan luas per kecamatan dari publikasi resmi BPS Parepare. Lisensi Terbuka BPS.</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">3</td>
+        <td><strong>Titik Destinasi Wisata</strong></td>
+        <td>Point (32 fitur)</td>
+        <td>OpenStreetMap (OSM) & Disporapar Parepare (2024/2025)</td>
+        <td>Query data POI pariwisata (alam, sejarah, religi, kuliner/pantai) via OSM Overpass API & verifikasi koordinat. Lisensi ODbL.</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">4</td>
+        <td><strong>Titik Fasilitas Akomodasi (Hotel & Wisma)</strong></td>
+        <td>Point (22 fitur)</td>
+        <td>OpenStreetMap (OSM), PHRI & Direktori Parepare (2024/2025)</td>
+        <td>Ekstraksi seluruh unit akomodasi (10 Hotel, 7 Wisma/Guest House, 5 Penginapan/Homestay) di 4 kecamatan. Lisensi ODbL.</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">5</td>
+        <td><strong>Buffer Jangkauan Akomodasi (2 Km)</strong></td>
+        <td>MultiPolygon (Unified)</td>
+        <td>Hasil Olahan Turf.js (Geospatial Analysis)</td>
+        <td>Dibuat melalui pemrosesan buffer geodesik 2.000 meter terhadap 22 titik akomodasi dan digabung (union).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- A4. TAHAP 4 -->
+  <div class="section-title">A4. Tahap 4 &mdash; Merapikan dan Menyiapkan Data</div>
+  <table>
+    <tr>
+      <td class="col-label">CRS Seluruh Layer</td>
+      <td>Seluruh data spasial ditransformasikan dan dipastikan berada dalam sistem koordinat standar web: <strong>WGS 84 (EPSG:4326)</strong> dengan koordinat lintang/bujur desimal.</td>
+    </tr>
+    <tr>
+      <td class="col-label">Pemeriksaan Validitas Geometri</td>
+      <td>Poligon kecamatan diperiksa bebas dari <em>self-intersection</em> dan lubang (<em>slivers</em>). Koordinat titik wisata dan hotel dipastikan valid dan berada di dalam batas Kota Parepare (Lat: -4.08 s.d -3.96, Lon: 119.61 s.d 119.72).</td>
+    </tr>
+    <tr>
+      <td class="col-label">Standardisasi Nama & Tipe Kolom</td>
+      <td>Field diseragamkan dengan huruf kecil tanpa spasi: <code>nama</code> (String), <code>kecamatan</code> (String), <code>kategori</code> (String), <code>lat</code> (Float), <code>lng</code> (Float), <code>status_buffer</code> (String), <code>hotel_terdekat</code> (String), <code>jarak_ke_hotel_km</code> (Float).</td>
+    </tr>
+    <tr>
+      <td class="col-label">Pembersihan Duplikat & Data Kosong</td>
+      <td>Menghapus lebih dari 15 kolom bawaan shapefile lama yang kosong (KDPPUM, FCODE, METADATA, dll.) dan memverifikasi nol duplikasi (0 duplicate). Nilai kosong pada tarif/fasilitas diberi nilai default terstandar.</td>
+    </tr>
+    <tr>
+      <td class="col-label">Kunci Penggabung Tabel</td>
+      <td>Field <code>kecamatan</code> digunakan sebagai <em>relational foreign key</em> untuk menggabungkan layer poligon spasial dengan tabel demografi BPS (luas, kepadatan, jumlah penduduk).</td>
+    </tr>
+    <tr>
+      <td class="col-label">Penyimpanan & Distribusi</td>
+      <td>Disimpan dalam direktori <code>data/</code> dalam format <code>.geojson</code> serta format <code>.js</code> (berisi variabel window) untuk mendukung mekanisme <em>dual-loading</em> bebas hambatan CORS browser lokal.</td>
+    </tr>
+  </table>
+
+  <!-- A5. TAHAP 5 -->
+  <div class="section-title">A5. Tahap 5 &mdash; Analisis Spasial</div>
+  <table>
+    <tr>
+      <td class="col-label">Nama Analisis</td>
+      <td><strong>Analisis Buffer Jangkauan Fasilitas Akomodasi (Radius 2 Km) & Evaluasi Aksesibilitas Destinasi Wisata (Point-in-Polygon & Proximity Haversine)</strong></td>
+    </tr>
+    <tr>
+      <td class="col-label">Fungsi / Algoritma yang Digunakan</td>
+      <td>
+        1. <code>turf.buffer(point, 2, { units: 'kilometers', steps: 64 })</code> &mdash; Pembuatan radius lingkaran geodesik 2 km.<br>
+        2. <code>turf.union(...)</code> &mdash; Penggabungan poligon buffer menjadi satu zona cakupan pelayanan terintegrasi.<br>
+        3. <code>turf.booleanPointInPolygon(titikWisata, unifiedBuffer)</code> &mdash; Validasi spasial keberadaan titik dalam buffer.<br>
+        4. <code>turf.distance(titikWisata, titikHotel, { units: 'kilometers' })</code> &mdash; Perhitungan jarak terpendek ke seluruh hotel.
+      </td>
+    </tr>
+    <tr>
+      <td class="col-label">Hasil Utama (Angka Kunci)</td>
+      <td>
+        &bull; <strong>Total Destinasi Wisata:</strong> 32 Titik (Kecamatan Ujung: 10, Bacukiki Barat: 9, Bacukiki: 9, Soreang: 4).<br>
+        &bull; <strong>Total Fasilitas Akomodasi:</strong> 22 Titik (10 Hotel, 7 Wisma/Guest House, 5 Penginapan/Homestay).<br>
+        &bull; <strong>Tingkat Keterjangkauan Kota:</strong> <strong>28 dari 32 objek wisata (87,5% &asymp; 88%)</strong> berada dalam radius 2 km dari fasilitas akomodasi.<br>
+        &bull; <strong>Area Belum Terjangkau (Blank Spot):</strong> <strong>4 dari 32 objek wisata (12,5% &asymp; 12%)</strong> berada di luar radius 2 km, seluruhnya berada di kawasan perbukitan dan lembah pedalaman Kecamatan Bacukiki (Salatiga Hills, Bendungan Lappa Angin, Puncak Bili-Bili, dan Pemandian Alam Bulu Langi).<br>
+        &bull; <strong>Kinerja per Kecamatan:</strong> Kecamatan Ujung (100% terjangkau, 11 hotel), Bacukiki Barat (100% terjangkau, 6 hotel), Soreang (100% terjangkau, 3 hotel), Bacukiki (55,6% terjangkau, 2 hotel).
+      </td>
+    </tr>
+    <tr>
+      <td class="col-label">Verifikasi Hasil</td>
+      <td>Hasil perhitungan Turf.js diverifikasi secara manual menggunakan Leaflet Measure Tool dan cross-check koordinat GPS untuk memastikan akurasi jarak lurus.</td>
+    </tr>
+  </table>
+
+  <!-- SCREENSHOT 1 & 2 -->
+  <div class="two-col-img">
+    <div>
+      <img src="screenshots/01_webgis_overview.png" alt="Tampilan Peta WebGIS Parepare">
+      <div class="caption">Gambar 1: Tampilan antarmuka WebGIS Kota Parepare dengan sebaran layer wisata, hotel, dan batas kecamatan.</div>
+    </div>
+    <div>
+      <img src="screenshots/02_buffer_popup_detail.png" alt="Analisis Buffer dan Popup Interaktif">
+      <div class="caption">Gambar 2: Analisis buffer 2 km per titik wisata (oranye) dan popup daftar hotel terdekat beserta jaraknya.</div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- A6. TAHAP 6 -->
+  <div class="section-title">A6. Tahap 6 &mdash; Penyajian Data</div>
+  <table>
+    <tr>
+      <td class="col-label">Bentuk Penyajian</td>
+      <td>Aplikasi WebGIS Interaktif <em>Full-Stack Client-Side</em> dengan dukungan Server Node.js lokal dan deployment cloud di <strong>GitHub Pages</strong>, dilengkapi halaman sekunder <strong>Tabel Atribut & Rekap Analisis</strong>.</td>
+    </tr>
+    <tr>
+      <td class="col-label">Langkah Singkat Pembuatan</td>
+      <td>
+        1. <strong>Arsitektur Data:</strong> Mengolah data vektor GeoJSON Parepare dan menyusun skrip <code>build_datasets.js</code> dengan Turf.js.<br>
+        2. <strong>Frontend Map Engine:</strong> Mengintegrasikan Leaflet.js dengan kontrol layer kustom, basemap switcher, dan search box.<br>
+        3. <strong>Fitur Interaktif Buffer:</strong> Menulis logika klik destinasi wisata untuk memunculkan buffer 2 km spesifik, garis konektor ke hotel dalam radius, dan kalkulasi jarak instan di popup.<br>
+        4. <strong>Dashboard Statistik:</strong> Membangun visualisasi Chart.js berupa dual-bar chart dan donut chart rasio keterjangkauan.<br>
+        5. <strong>Tabel Atribut Eksternal:</strong> Membuat <code>tabel_atribut.html</code> dengan filter, deep-link "Buka Peta", ekspor CSV, dan cetak PDF.
+      </td>
+    </tr>
+  </table>
+
+  <!-- A7. TAHAP 7 -->
+  <div class="section-title">A7. Tahap 7 &mdash; Visualisasi dan Kelengkapan Peta</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Elemen Wajib</th>
+        <th style="width: 10%; text-align: center;">Ada?</th>
+        <th style="width: 65%;">Keterangan & Implementasi pada WebGIS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Basemap</strong></td>
+        <td style="text-align: center;"><span class="badge badge-success">✓ Ada</span></td>
+        <td>Disediakan 3 pilihan basemap: OpenStreetMap Standard, Esri World Imagery (Satelit Resolusi Tinggi), dan Esri World Topo Map.</td>
+      </tr>
+      <tr>
+        <td><strong>Simbol & Warna Bermakna</strong></td>
+        <td style="text-align: center;"><span class="badge badge-success">✓ Ada</span></td>
+        <td>Pin Hijau = Wisata Terjangkau Hotel (≤ 2 km), Pin Merah = Wisata Belum Terjangkau (> 2 km), Pin Biru Gedung = Hotel/Akomodasi, Area Cyan Transparan = Buffer Hotel, Lingkaran Oranye = Radius Wisata Aktif.</td>
+      </tr>
+      <tr>
+        <td><strong>Popup Informatif</strong></td>
+        <td style="text-align: center;"><span class="badge badge-success">✓ Ada</span></td>
+        <td>Menampilkan foto/kategori, jam buka, tiket masuk, status jangkauan hotel, nama hotel terdekat, serta daftar seluruh hotel yang berada dalam radius 2 km beserta jarak rincinya.</td>
+      </tr>
+      <tr>
+        <td><strong>Legenda Peta</strong></td>
+        <td style="text-align: center;"><span class="badge badge-success">✓ Ada</span></td>
+        <td>Floating legend panel di pojok kanan bawah dengan simbol warna dinamis dan tombol minimize/expand.</td>
+      </tr>
+      <tr>
+        <td><strong>Judul & Identitas</strong></td>
+        <td style="text-align: center;"><span class="badge badge-success">✓ Ada</span></td>
+        <td>Header navigation bar modern glassmorphism dengan judul lengkap dan badge praktikum P08.</td>
+      </tr>
+      <tr>
+        <td><strong>Sumber Data</strong></td>
+        <td style="text-align: center;"><span class="badge badge-success">✓ Ada</span></td>
+        <td>Dicantumkan di sidebar footer dan panel informasi: BIG, BPS Parepare, OpenStreetMap, dan Disporapar.</td>
+      </tr>
+      <tr>
+        <td><strong>Fitur Interaktif 1: Pencarian Cepat</strong></td>
+        <td style="text-align: center;"><span class="badge badge-success">✓ Ada</span></td>
+        <td>Search bar dengan <em>autocomplete suggestion</em> yang langsung melakukan <code>flyTo</code> animasi zoom dan otomatis membuka popup objek yang dicari.</td>
+      </tr>
+      <tr>
+        <td><strong>Fitur Interaktif 2: Filter Ganda</strong></td>
+        <td style="text-align: center;"><span class="badge badge-success">✓ Ada</span></td>
+        <td>Filter dinamis berdasarkan Kategori Wisata (Alam, Budaya/Sejarah, Kuliner/Pantai, Religi), Kecamatan, dan Status Keterjangkauan.</td>
+      </tr>
+      <tr>
+        <td><strong>Panel Statistik / Grafik</strong></td>
+        <td style="text-align: center;"><span class="badge badge-success">✓ Ada</span></td>
+        <td>Dashboard grafik interaktif Chart.js: Bar Chart komparasi fasilitas per kecamatan dan Donut Chart rasio keterlayanan hotel.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SCREENSHOT 3 & 4 -->
+  <div class="two-col-img">
+    <div>
+      <img src="screenshots/03_chart_dashboard.png" alt="Dashboard Chart.js">
+      <div class="caption">Gambar 3: Panel statistik Chart.js interaktif (sebaran fasilitas & rasio keterjangkauan).</div>
+    </div>
+    <div>
+      <img src="screenshots/04_tabel_atribut.png" alt="Halaman Tabel Atribut">
+      <div class="caption">Gambar 4: Halaman Tabel Atribut Spasial lengkap dengan filter, ekspor CSV, dan tautan deep-link ke peta.</div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- A8. TAHAP 8 -->
+  <div class="section-title">A8. Tahap 8 &mdash; Pengujian dan Publikasi</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 30%;">Item Pengujian</th>
+        <th style="width: 70%;">Hasil Pengujian & Verifikasi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Uji Lintas Browser</strong></td>
+        <td>Berhasil diuji dan berjalan sempurna tanpa error pada <strong>Google Chrome v120+</strong>, <strong>Microsoft Edge v120+</strong>, dan <strong>Mozilla Firefox v122+</strong>. Seluruh tile basemap, marker custom SVG, dan canvas grafik dirender secara mulus.</td>
+      </tr>
+      <tr>
+        <td><strong>Uji Responsivitas Layar Kecil / HP</strong></td>
+        <td>Tata letak responsif: Pada layar smartphone (< 768px), sidebar berpindah menjadi panel modal / drawer yang dapat disembunyikan, ukuran tombol kontrol membesar untuk sentuhan jari (<em>touch-friendly</em>), dan peta tetap leluasa dijelajahi.</td>
+      </tr>
+      <tr>
+        <td><strong>Validasi Sinkronisasi Angka</strong></td>
+        <td>Angka pada ringkasan dashboard, tabel atribut, dan hasil analisis spasial 100% konsisten: Total 32 destinasi wisata, 22 akomodasi, 28 terjangkau (87,5%), 4 belum terjangkau (12,5%).</td>
+      </tr>
+      <tr>
+        <td><strong>Publikasi Cloud Publik</strong></td>
+        <td>
+          Telah berhasil dipublikasikan secara daring via GitHub Pages:<br>
+          &bull; <strong>URL Aplikasi WebGIS:</strong> <a class="url-link" href="https://zeolit404.github.io/WebGIS_P08_Parepare/">https://zeolit404.github.io/WebGIS_P08_Parepare/</a><br>
+          &bull; <strong>URL Repositori Kode Sumber:</strong> <a class="url-link" href="https://github.com/zeolit404/WebGIS_P08_Parepare">https://github.com/zeolit404/WebGIS_P08_Parepare</a>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Tautan Video Demonstrasi</strong></td>
+        <td>Video demonstrasi fitur (durasi ≤ 3 menit) mencakup demo pencarian, interaksi buffer 2 km, filter layer, dan tabel atribut: <em>[Tersedia pada repositori GitHub & folder pengumpulan]</em>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SCREENSHOT 5 -->
+  <div class="screenshot-card" style="margin-top: 10px;">
+    <img src="screenshots/05_mobile_view.png" alt="Tampilan Mobile WebGIS" style="max-height: 200px; width: auto; max-width: 100%;">
+    <div class="caption">Gambar 5: Tampilan antarmuka WebGIS yang adaptif dan responsif pada layar perangkat bergerak (mobile view).</div>
+  </div>
+
+  <!-- A9. TAHAP 9 -->
+  <div class="section-title">A9. Tahap 9 &mdash; Interpretasi Hasil dan Refleksi</div>
+  <table>
+    <tr>
+      <td class="col-label">Jawaban atas Pertanyaan Analisis (A1)</td>
+      <td>
+        <p style="margin: 0 0 6px 0;">
+          Berdasarkan hasil analisis spasial terintegrasi terhadap 32 destinasi wisata dan 22 fasilitas akomodasi perhotelan di Kota Parepare:
+        </p>
+        <ol style="margin-top: 0;">
+          <li><strong>Tingkat Keterjangkauan Sangat Tinggi:</strong> Sebanyak <strong>87,5% (28 objek wisata)</strong> telah berada dalam radius jangkauan layanan akomodasi 2 km. Tiga kecamatan utama (Ujung, Bacukiki Barat, dan Soreang) memiliki rasio keterjangkauan sempurna (100%), didorong oleh konsentrasi hotel di sepanjang koridor pesisir pantai dan jalan arteri Trans-Sulawesi.</li>
+          <li><strong>Identifikasi Titik Blank Spot:</strong> Terdapat <strong>4 objek wisata (12,5%)</strong> yang belum terlayani akomodasi hotel dalam radius 2 km, seluruhnya terkonsentrasi di kawasan perbukitan dan lembah pedalaman Kecamatan Bacukiki, yaitu: <em>Salatiga Hills, Bendungan Lappa Angin, Puncak Bili-Bili, dan Pemandian Alam Bulu Langi</em>. Jarak hotel terdekat ke objek-objek tersebut berkisar antara 2,4 km hingga 5,1 km.</li>
+          <li><strong>Rekomendasi Kebijakan:</strong> Pemerintah Kota Parepare dan investor disarankan tidak perlu menambah hotel konvensional di pusat kota Ujung yang telah jenuh (11 hotel), melainkan mengarahkan investasi akomodasi alternatif berbasis alam seperti <em>eco-lodge</em>, <em>glamping site</em>, atau homestay wisata di sekitar Bacukiki guna mendukung ekowisata perbukitan.</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class="col-label">Kendala Terbesar & Cara Mengatasi</td>
+      <td>
+        <strong>Kendala:</strong> Inkonsistensi data batas administrasi shapefile regional yang mencakup wilayah kabupaten tetangga serta keterbatasan izin CORS browser saat membuka file GeoJSON lokal secara langsung.<br>
+        <strong>Solusi:</strong> Melakukan filter dan transformasi geometri khusus 4 kecamatan murni Parepare melalui skrip otomatis Node.js (Turf.js), serta menerapkan arsitektur <em>dual-loading</em> (GeoJSON + JavaScript global variable) sehingga WebGIS dapat dibuka baik melalui HTTP server lokal, GitHub Pages, maupun langsung klik ganda pada file HTML.
+      </td>
+    </tr>
+    <tr>
+      <td class="col-label">Rencana Pengembangan Lanjutan</td>
+      <td>
+        Jika diberikan alokasi waktu dan sumber daya lebih lanjut, fitur yang sangat bermanfaat untuk ditambahkan adalah:
+        <ul style="margin-top: 2px;">
+          <li><strong>Network Analysis / Isochrone Travel Time:</strong> Mengganti buffer jarak lurus (Euclidean/geodesic) dengan analisis waktu tempuh jaringan jalan riil menggunakan OpenRouteService API atau Valhalla API (misal: jangkauan 5, 10, dan 15 menit berkendara).</li>
+          <li><strong>Integrasi Tur Virtual & Foto 360°:</strong> Menyematkan panorama 360 derajat di dalam popup untuk memberikan gambaran visual nyata sebelum wisatawan mengunjungi lokasi.</li>
+          <li><strong>Routing Dinamis:</strong> Fitur penunjuk arah rute perjalanan langsung dari lokasi pengguna (GPS device) ke destinasi wisata dan hotel terpilih.</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+  <!-- TANDA TANGAN & PENGESAHAN -->
+  <div style="margin-top: 15px; page-break-inside: avoid;">
+    <table style="border: none;">
+      <tr style="border: none; background: transparent;">
+        <td style="border: none; width: 60%; background: transparent;">
+          <p style="margin: 0; font-size: 8.5pt; color: #475569;">
+            Laporan ini disusun dengan sebenar-benarnya berdasarkan hasil pengerjaan mandiri dan pengolahan data spasial orisinal pada Praktikum Pengelolaan Big Data dan WebGIS.
+          </p>
+        </td>
+        <td style="border: none; width: 40%; text-align: center; background: transparent;">
+          <p style="margin: 0 0 45px 0; font-size: 9pt;">
+            Makassar / Parepare, 5 November 2026<br>
+            <strong>Mahasiswa Penyusun,</strong>
+          </p>
+          <p style="margin: 0; font-size: 9.5pt; font-weight: 700; text-decoration: underline;">
+            M. ARIEF ABDILLAH
+          </p>
+          <p style="margin: 0; font-size: 8.5pt; color: #475569;">
+            NIM. V126241003
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="footer-note">
+    <span>Lembar Tugas Praktikum Pertemuan 08 (P08) &bull; M. Arief Abdillah (V126241003)</span>
+    <span>WebGIS Analisis Spasial Parepare &bull; Halaman Dokumen Resmi</span>
+  </div>
+
+</body>
+</html>
