@@ -867,4 +867,23 @@ function initCharts() {
 }
 
 // Inisialisasi Grafik saat dokumen selesai dimuat
-window.addEventListener('DOMContentLoaded', initCharts);
+window.addEventListener('DOMContentLoaded', () => {
+  initCharts();
+
+  // Cek URL parameter jika dibuka dari tombol "Peta" pada tabel_atribut.html
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramLat = parseFloat(urlParams.get('lat'));
+  const paramLng = parseFloat(urlParams.get('lng'));
+  const paramName = urlParams.get('name');
+
+  if (!isNaN(paramLat) && !isNaN(paramLng)) {
+    setTimeout(() => {
+      map.flyTo([paramLat, paramLng], 16, { duration: 1.2 });
+      if (paramName && wisataMarkersMap[paramName]) {
+        setTimeout(() => {
+          wisataMarkersMap[paramName].openPopup();
+        }, 800);
+      }
+    }, 500);
+  }
+});
