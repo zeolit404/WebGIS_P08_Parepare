@@ -353,16 +353,16 @@
 
     <!-- TAB NAVIGATION -->
     <div class="tab-nav">
-      <button class="tab-btn active" onclick="switchTab('wisata')">
+      <button class="tab-btn active" onclick="switchTab('wisata', this)">
         <i class="fa-solid fa-umbrella-beach"></i> Objek Wisata <span class="badge-count" id="count-tab-wisata">12</span>
       </button>
-      <button class="tab-btn" onclick="switchTab('hotel')">
+      <button class="tab-btn" onclick="switchTab('hotel', this)">
         <i class="fa-solid fa-hotel"></i> Akomodasi & Penginapan <span class="badge-count" id="count-tab-hotel">22</span>
       </button>
-      <button class="tab-btn" onclick="switchTab('kecamatan')">
+      <button class="tab-btn" onclick="switchTab('kecamatan', this)">
         <i class="fa-solid fa-draw-polygon"></i> Batas Kecamatan (BPS & BIG) <span class="badge-count" id="count-tab-kecamatan">4</span>
       </button>
-      <button class="tab-btn" onclick="switchTab('analisis')">
+      <button class="tab-btn" onclick="switchTab('analisis', this)">
         <i class="fa-solid fa-chart-pie"></i> Rekap Analisis Buffer 2 Km <span class="badge-count">92%</span>
       </button>
     </div>
@@ -545,12 +545,17 @@
 
   <script>
     // Tab switching logic
-    function switchTab(tabId) {
+    function switchTab(tabId, btnEl) {
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
 
-      event.currentTarget.classList.add('active');
-      document.getElementById('tab-' + tabId).classList.add('active');
+      if (btnEl) {
+        btnEl.classList.add('active');
+      } else if (window.event && window.event.currentTarget) {
+        window.event.currentTarget.classList.add('active');
+      }
+      const target = document.getElementById('tab-' + tabId);
+      if (target) target.classList.add('active');
     }
 
     // 1. RENDER TABEL WISATA
@@ -615,8 +620,6 @@
       tbody.innerHTML = filtered.map((f, i) => {
         const p = f.properties;
         const [lon, lat] = f.geometry.coordinates;
-        let badgeColor = 'primary';
-        if (p.tipe === 'Wisma') badgeColor = 'status-pill' style="background: #e0e7ff; color: #4338ca;";
         
         let typeBadge = `<span class="status-pill primary">${p.tipe}</span>`;
         if (p.tipe === 'Wisma') typeBadge = `<span class="status-pill" style="background:#e0e7ff; color:#4338ca;">Wisma</span>`;
@@ -729,12 +732,18 @@
     document.getElementById('filter-kec-hotel').addEventListener('change', renderTabelHotel);
 
     // Initial load
-    window.addEventListener('DOMContentLoaded', () => {
+    function initAllTables() {
       renderTabelWisata();
       renderTabelHotel();
       renderTabelKecamatan();
       renderTabelAnalisis();
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', initAllTables);
+    } else {
+      initAllTables();
+    }
   </script>
 </body>
 </html>
