@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabel Atribut Spasial - WebGIS Kota Parepare</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
+      --success: #10b981;
+      --success-light: #d1fae5;
+      --danger: #ef4444;
+      --danger-light: #fee2e2;
+      --dark: #0f172a;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --font: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 40px;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .brand h1 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .brand p {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .btn-back {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.2s;
+    }
+
+    .btn-back:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1300px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    /* TAB NAVIGATION */
+    .tab-nav {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 10px 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .tab-btn .badge-count {
+      background: #e2e8f0;
+      color: var(--text);
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 12px;
+    }
+
+    .tab-btn.active .badge-count {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    /* TOOLBAR */
+    .toolbar {
+      background: white;
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 6px;
+      flex: 1;
+      max-width: 380px;
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      outline: none;
+      width: 100%;
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .select-filter {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-family: inherit;
+      font-size: 12px;
+      background: white;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .btn-export {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .btn-export:hover {
+      background: #e2e8f0;
+    }
+
+    .badge-info {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* TABLE STYLING */
+    .table-card {
+      background: white;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+      max-height: 65vh;
+    }
+
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      text-align: left;
+    }
+
+    table.data-table th, table.data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    table.data-table th {
+      background: #f1f5f9;
+      color: var(--dark);
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    table.data-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .status-pill.success {
+      background: var(--success-light);
+      color: #065f46;
+    }
+
+    .status-pill.danger {
+      background: var(--danger-light);
+      color: #991b1b;
+    }
+
+    .status-pill.primary {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    .coord-code {
+      font-family: monospace;
+      font-size: 11px;
+      background: #f1f5f9;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #475569;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* FOOTER INFO */
+    .table-footer {
+      padding: 12px 18px;
+      background: #fafafa;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= TOP HEADER ================= -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">
+        <i class="fa-solid fa-table-list"></i>
+      </div>
+      <div>
+        <h1>Tabel Atribut Spasial & Rekapitulasi Data</h1>
+        <p>WebGIS Analisis Wisata & Hotel Kota Parepare &mdash; Praktikum P08</p>
+      </div>
+    </div>
+    <a href="index.html" class="btn-back">
+      <i class="fa-solid fa-map"></i> Kembali ke Peta WebGIS
+    </a>
+  </header>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <div class="container">
+
+    <!-- TAB NAVIGATION -->
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('wisata')">
+        <i class="fa-solid fa-umbrella-beach"></i> Objek Wisata <span class="badge-count" id="count-tab-wisata">12</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('hotel')">
+        <i class="fa-solid fa-hotel"></i> Hotel & Akomodasi <span class="badge-count" id="count-tab-hotel">10</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('kecamatan')">
+        <i class="fa-solid fa-draw-polygon"></i> Batas Kecamatan (BPS & BIG) <span class="badge-count" id="count-tab-kecamatan">4</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('analisis')">
+        <i class="fa-solid fa-chart-pie"></i> Rekap Analisis Buffer 2 Km <span class="badge-count">67%</span>
+      </button>
+    </div>
+
+    <!-- ================= TAB 1: OBJEK WISATA ================= -->
+    <div id="tab-wisata" class="tab-content active">
+      <div class="toolbar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass" style="color: #94a3b8;"></i>
+          <input type="text" id="cari-wisata" placeholder="Cari nama wisata, kategori, atau kecamatan...">
+        </div>
+        <div class="toolbar-actions">
+          <select id="filter-kec-wisata" class="select-filter">
+            <option value="ALL">Semua Kecamatan</option>
+            <option value="Ujung">Kec. Ujung</option>
+            <option value="Bacukiki Barat">Kec. Bacukiki Barat</option>
+            <option value="Soreang">Kec. Soreang</option>
+            <option value="Bacukiki">Kec. Bacukiki</option>
+          </select>
+          <select id="filter-status-wisata" class="select-filter">
+            <option value="ALL">Semua Status Akses</option>
+            <option value="Terjangkau (≤ 2 km)">Terjangkau (≤ 2 km)</option>
+            <option value="Belum Terjangkau (> 2 km)">Belum Terjangkau (> 2 km)</option>
+          </select>
+          <button class="btn-export" onclick="exportTableToCSV('tabel-wisata-body', 'wisata_parepare.csv')">
+            <i class="fa-solid fa-file-csv"></i> Export CSV
+          </button>
+          <span class="badge-info" id="info-jumlah-wisata">12 Fitur</span>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 40px;">No</th>
+                <th>Nama Destinasi Wisata</th>
+                <th>Kategori</th>
+                <th>Kecamatan</th>
+                <th>Alamat</th>
+                <th>Tiket Masuk</th>
+                <th>Jam Operasional</th>
+                <th>Hotel Terdekat</th>
+                <th>Jarak ke Hotel</th>
+                <th>Status Aksesibilitas (2 Km)</th>
+                <th>Koordinat (Lat, Lng)</th>
+              </tr>
+            </thead>
+            <tbody id="tabel-wisata-body"></tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <span>Sumber: OpenStreetMap Contributors & Disporapar Kota Parepare (2024/2025)</span>
+          <span>Analisis: Geodesic Haversine Distance (Turf.js)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB 2: HOTEL & AKOMODASI ================= -->
+    <div id="tab-hotel" class="tab-content">
+      <div class="toolbar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass" style="color: #94a3b8;"></i>
+          <input type="text" id="cari-hotel" placeholder="Cari nama hotel, bintang, atau alamat...">
+        </div>
+        <div class="toolbar-actions">
+          <select id="filter-kec-hotel" class="select-filter">
+            <option value="ALL">Semua Kecamatan</option>
+            <option value="Ujung">Kec. Ujung</option>
+            <option value="Bacukiki Barat">Kec. Bacukiki Barat</option>
+            <option value="Soreang">Kec. Soreang</option>
+            <option value="Bacukiki">Kec. Bacukiki</option>
+          </select>
+          <button class="btn-export" onclick="exportTableToCSV('tabel-hotel-body', 'hotel_parepare.csv')">
+            <i class="fa-solid fa-file-csv"></i> Export CSV
+          </button>
+          <span class="badge-info" id="info-jumlah-hotel">10 Fitur</span>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 40px;">No</th>
+                <th>Nama Hotel / Akomodasi</th>
+                <th>Klasifikasi / Kategori</th>
+                <th>Kecamatan</th>
+                <th>Alamat Lengkap</th>
+                <th>Kisaran Tarif / Malam</th>
+                <th>Kontak / Telepon</th>
+                <th>Fasilitas Unggulan</th>
+                <th>Koordinat (Lat, Lng)</th>
+              </tr>
+            </thead>
+            <tbody id="tabel-hotel-body"></tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <span>Sumber: OpenStreetMap Contributors & PHRI Kota Parepare (2024/2025)</span>
+          <span>Sistem Koordinat: WGS84 (EPSG:4326)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB 3: BATAS KECAMATAN ================= -->
+    <div id="tab-kecamatan" class="tab-content">
+      <div class="table-card" style="margin-top: 14px;">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 40px;">No</th>
+                <th>Nama Kecamatan</th>
+                <th>Kota / Provinsi</th>
+                <th>Luas Wilayah (km²)</th>
+                <th>Jumlah Penduduk (Jiwa)</th>
+                <th>Kepadatan (Jiwa/km²)</th>
+                <th>Jumlah Kelurahan</th>
+                <th>Sebaran Wisata</th>
+                <th>Sebaran Hotel</th>
+                <th>Kode BPS</th>
+                <th>Sumber Data Spasial</th>
+              </tr>
+            </thead>
+            <tbody id="tabel-kecamatan-body"></tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <span>Sumber Data Vektor: Ina-Geoportal Badan Informasi Geospasial (BIG) Skala 1:50.000</span>
+          <span>Data Atribut: BPS Kota Parepare Dalam Angka 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB 4: REKAP ANALISIS ================= -->
+    <div id="tab-analisis" class="tab-content">
+      <div class="table-card" style="margin-top: 14px;">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 40px;">No</th>
+                <th>Kecamatan</th>
+                <th>Jumlah Wisata</th>
+                <th>Wisata Terjangkau Hotel (≤ 2 km)</th>
+                <th>Wisata Belum Terjangkau (> 2 km)</th>
+                <th>Tingkat Aksesibilitas (%)</th>
+                <th>Ketersediaan Hotel</th>
+                <th>Status Wilayah & Rekomendasi</th>
+              </tr>
+            </thead>
+            <tbody id="tabel-analisis-body"></tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <span>Parameter: Geodesic Buffer Radius 2.000 Meter (Turf.js)</span>
+          <span>Kesimpulan: 8 dari 12 objek wisata (67%) telah terlayani akomodasi hotel</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= SCRIPTS ================= -->
+  <!-- Script Data Dual-Loading Fallback -->
+  <script src="data/kecamatan_parepare.js"></script>
+  <script src="data/wisata_parepare.js"></script>
+  <script src="data/hotel_parepare.js"></script>
+  <script src="data/analisis_summary.js"></script>
+
+  <script>
+    // Tab switching logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+      event.currentTarget.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+
+    // 1. RENDER TABEL WISATA
+    function renderTabelWisata() {
+      if (typeof dataWisata === 'undefined') return;
+      const tbody = document.getElementById('tabel-wisata-body');
+      const q = document.getElementById('cari-wisata').value.toLowerCase();
+      const kec = document.getElementById('filter-kec-wisata').value;
+      const status = document.getElementById('filter-status-wisata').value;
+
+      const filtered = dataWisata.features.filter(f => {
+        const p = f.properties;
+        const matchQ = p.nama.toLowerCase().includes(q) || p.kategori.toLowerCase().includes(q) || p.kecamatan.toLowerCase().includes(q);
+        const matchKec = (kec === 'ALL' || p.kecamatan === kec);
+        const matchStatus = (status === 'ALL' || p.status_akses === status);
+        return matchQ && matchKec && matchStatus;
+      });
+
+      tbody.innerHTML = filtered.map((f, i) => {
+        const p = f.properties;
+        const [lon, lat] = f.geometry.coordinates;
+        const statusBadge = p.terjangkau_hotel_2km
+          ? `<span class="status-pill success"><i class="fa-solid fa-circle-check"></i> Terjangkau (≤ 2 km)</span>`
+          : `<span class="status-pill danger"><i class="fa-solid fa-triangle-exclamation"></i> Belum Terjangkau</span>`;
+
+        return `
+          <tr>
+            <td>${i + 1}</td>
+            <td><strong>${p.nama}</strong></td>
+            <td><span class="status-pill primary">${p.kategori}</span></td>
+            <td>${p.kecamatan}</td>
+            <td style="max-width: 220px;">${p.alamat}</td>
+            <td>${p.tiket}</td>
+            <td>${p.jam_buka}</td>
+            <td><strong>${p.hotel_terdekat}</strong></td>
+            <td><strong>${p.jarak_ke_hotel_km} km</strong> (${p.jarak_ke_hotel_m} m)</td>
+            <td>${statusBadge}</td>
+            <td><span class="coord-code">${lat.toFixed(5)}, ${lon.toFixed(5)}</span></td>
+          </tr>
+        `;
+      }).join('');
+
+      document.getElementById('info-jumlah-wisata').textContent = filtered.length + ' Fitur';
+    }
+
+    // 2. RENDER TABEL HOTEL
+    function renderTabelHotel() {
+      if (typeof dataHotel === 'undefined') return;
+      const tbody = document.getElementById('tabel-hotel-body');
+      const q = document.getElementById('cari-hotel').value.toLowerCase();
+      const kec = document.getElementById('filter-kec-hotel').value;
+
+      const filtered = dataHotel.features.filter(f => {
+        const p = f.properties;
+        const matchQ = p.nama.toLowerCase().includes(q) || p.kategori.toLowerCase().includes(q) || p.alamat.toLowerCase().includes(q);
+        const matchKec = (kec === 'ALL' || p.kecamatan === kec);
+        return matchQ && matchKec;
+      });
+
+      tbody.innerHTML = filtered.map((f, i) => {
+        const p = f.properties;
+        const [lon, lat] = f.geometry.coordinates;
+        return `
+          <tr>
+            <td>${i + 1}</td>
+            <td><strong>${p.nama}</strong></td>
+            <td><span class="status-pill primary">${p.kategori}</span></td>
+            <td>${p.kecamatan}</td>
+            <td>${p.alamat}</td>
+            <td style="color: #0284c7; font-weight: 600;">${p.kisaran_harga}</td>
+            <td>${p.telepon}</td>
+            <td style="font-size: 11px;">${p.fasilitas}</td>
+            <td><span class="coord-code">${lat.toFixed(5)}, ${lon.toFixed(5)}</span></td>
+          </tr>
+        `;
+      }).join('');
+
+      document.getElementById('info-jumlah-hotel').textContent = filtered.length + ' Fitur';
+    }
+
+    // 3. RENDER TABEL KECAMATAN
+    function renderTabelKecamatan() {
+      if (typeof dataKecamatan === 'undefined') return;
+      const tbody = document.getElementById('tabel-kecamatan-body');
+
+      tbody.innerHTML = dataKecamatan.features.map((f, i) => {
+        const p = f.properties;
+        const wCount = typeof dataWisata !== 'undefined' ? dataWisata.features.filter(w => w.properties.kecamatan === p.kecamatan).length : 0;
+        const hCount = typeof dataHotel !== 'undefined' ? dataHotel.features.filter(h => h.properties.kecamatan === p.kecamatan).length : 0;
+
+        return `
+          <tr>
+            <td>${i + 1}</td>
+            <td><strong>Kecamatan ${p.kecamatan}</strong></td>
+            <td>${p.kota}, ${p.provinsi}</td>
+            <td><strong>${p.luas_km2} km²</strong></td>
+            <td>${p.penduduk_jiwa.toLocaleString('id-ID')} Jiwa</td>
+            <td>${p.kepadatan_jiwa_km2.toLocaleString('id-ID')} Jiwa/km²</td>
+            <td>${p.jumlah_kelurahan} Kelurahan</td>
+            <td><span class="status-pill success">${wCount} Destinasi</span></td>
+            <td><span class="status-pill primary">${hCount} Hotel</span></td>
+            <td><code>${p.kode_bps}</code></td>
+            <td style="font-size: 11px; color: #64748b;">${p.sumber_data}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // 4. RENDER TABEL REKAP ANALISIS
+    function renderTabelAnalisis() {
+      if (typeof dataSummary === 'undefined') return;
+      const tbody = document.getElementById('tabel-analisis-body');
+
+      const recommendations = {
+        'Bacukiki': 'Blank Spot Utama: Potensi tinggi pengembangan homestay & resort alam pedesaan',
+        'Bacukiki Barat': 'Prima: Kawasan wisata bahari pesisir dengan dukungan hotel memadai',
+        'Ujung': 'Sangat Prima: Pusat perkotaan dan pelabuhan dengan konsentrasi akomodasi tertinggi',
+        'Soreang': 'Berkembang: Aksesibilitas baik, membutuhkan diversifikasi akomodasi di sekitar hutan kota'
+      };
+
+      tbody.innerHTML = dataSummary.rekap_per_kecamatan.map((r, i) => {
+        const badgeColor = r.persen_terjangkau === 100 ? 'success' : (r.persen_terjangkau > 0 ? 'primary' : 'danger');
+        return `
+          <tr>
+            <td>${i + 1}</td>
+            <td><strong>Kecamatan ${r.kecamatan}</strong></td>
+            <td><strong>${r.jumlah_wisata}</strong></td>
+            <td><span class="status-pill success">${r.wisata_terjangkau} Objek</span></td>
+            <td><span class="status-pill danger">${r.wisata_belum_terjangkau} Objek</span></td>
+            <td><span class="status-pill ${badgeColor}"><strong>${r.persen_terjangkau}%</strong></span></td>
+            <td><strong>${r.jumlah_hotel} Unit</strong></td>
+            <td style="font-size: 11.5px;">${recommendations[r.kecamatan] || '-'}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Export CSV Helper
+    function exportTableToCSV(tbodyId, filename) {
+      const rows = document.querySelectorAll('#' + tbodyId + ' tr');
+      let csv = [];
+      rows.forEach(row => {
+        const cols = row.querySelectorAll('td');
+        let rowData = [];
+        cols.forEach(col => {
+          let text = col.innerText.replace(/"/g, '""');
+          rowData.push('"' + text.trim() + '"');
+        });
+        csv.push(rowData.join(','));
+      });
+
+      const csvBlob = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(csvBlob);
+      link.download = filename;
+      link.click();
+    }
+
+    // Event Listeners
+    document.getElementById('cari-wisata').addEventListener('input', renderTabelWisata);
+    document.getElementById('filter-kec-wisata').addEventListener('change', renderTabelWisata);
+    document.getElementById('filter-status-wisata').addEventListener('change', renderTabelWisata);
+
+    document.getElementById('cari-hotel').addEventListener('input', renderTabelHotel);
+    document.getElementById('filter-kec-hotel').addEventListener('change', renderTabelHotel);
+
+    // Initial load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderTabelWisata();
+      renderTabelHotel();
+      renderTabelKecamatan();
+      renderTabelAnalisis();
+    });
+  </script>
+</body>
+</html>
