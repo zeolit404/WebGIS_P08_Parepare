@@ -1,28 +1,28 @@
 const dataSummary = {
   "judul": "Analisis Spasial Aksesibilitas Destinasi Wisata terhadap Fasilitas Akomodasi (Radius 2 Km) Kota Parepare",
-  "tanggal_analisis": "2026-11-04T16:39:42.070Z",
+  "tanggal_analisis": "2026-11-04T17:09:32.835Z",
   "parameter": {
     "radius_buffer_km": 2,
     "metode_jarak": "Geodesic Haversine / Turf.js",
     "crs": "EPSG:4326 (WGS84)"
   },
   "hasil_keseluruhan": {
-    "total_destinasi_wisata": 12,
+    "total_destinasi_wisata": 32,
     "total_akomodasi": 22,
     "total_hotel_bintang": 10,
     "total_wisma": 7,
     "total_penginapan": 5,
-    "wisata_terjangkau_radius_2km": 11,
-    "wisata_belum_terjangkau_radius_2km": 1,
-    "persentase_aksesibilitas": 92
+    "wisata_terjangkau_radius_2km": 28,
+    "wisata_belum_terjangkau_radius_2km": 4,
+    "persentase_aksesibilitas": 88
   },
   "rekap_per_kecamatan": [
     {
       "kecamatan": "Bacukiki",
-      "jumlah_wisata": 3,
-      "wisata_terjangkau": 2,
-      "wisata_belum_terjangkau": 1,
-      "persen_terjangkau": 67,
+      "jumlah_wisata": 9,
+      "wisata_terjangkau": 5,
+      "wisata_belum_terjangkau": 4,
+      "persen_terjangkau": 56,
       "total_akomodasi": 2,
       "hotel_bintang": 0,
       "wisma": 0,
@@ -30,7 +30,13 @@ const dataSummary = {
       "daftar_wisata": [
         "Ladoma (Ladang Terbuka & Kolam Alam)",
         "Waterboom Parepare (Gedung Pemuda)",
-        "Salatiga Hills (Wisata Puncak)"
+        "Salatiga Hills (Wisata Puncak)",
+        "Stadion Gelora B.J. Habibie (GBH)",
+        "Bendungan Lappa Angin",
+        "Puncak Bili-Bili Bacukiki",
+        "Wisata Agro & Buah Lompoe",
+        "Pemandian Alam Bulu Langi",
+        "Danau Cappa Batue Galung Maloang"
       ],
       "daftar_akomodasi": [
         "Homestay Syariah Bacukiki (Penginapan)",
@@ -39,8 +45,8 @@ const dataSummary = {
     },
     {
       "kecamatan": "Bacukiki Barat",
-      "jumlah_wisata": 3,
-      "wisata_terjangkau": 3,
+      "jumlah_wisata": 9,
+      "wisata_terjangkau": 9,
       "wisata_belum_terjangkau": 0,
       "persen_terjangkau": 100,
       "total_akomodasi": 6,
@@ -50,7 +56,13 @@ const dataSummary = {
       "daftar_wisata": [
         "Pantai & Taman Mattirotasi",
         "Tonrangeng River Side (TRS)",
-        "Pantai Lumpue"
+        "Pantai Lumpue",
+        "Masjid Terapung BJ Habibie",
+        "Wisata Bahari Tebing Lumpue",
+        "Taman Lansia & Kebugaran Mattirotasi",
+        "Pantai Paputo (Pasir Putih Tonrangeng)",
+        "Ekowisata Hutan Mangrove Karajae",
+        "Wisata Pemandangan Bukit Kenari"
       ],
       "daftar_akomodasi": [
         "Hotel Kenari Bukit Resort (Hotel)",
@@ -63,8 +75,8 @@ const dataSummary = {
     },
     {
       "kecamatan": "Ujung",
-      "jumlah_wisata": 3,
-      "wisata_terjangkau": 3,
+      "jumlah_wisata": 10,
+      "wisata_terjangkau": 10,
       "wisata_belum_terjangkau": 0,
       "persen_terjangkau": 100,
       "total_akomodasi": 11,
@@ -74,7 +86,14 @@ const dataSummary = {
       "daftar_wisata": [
         "Monumen Cinta Sejati Habibie-Ainun",
         "Monumen Korban 40.000 Jiwa",
-        "Museum BJ Habibie (Rumah Masa Kecil)"
+        "Museum BJ Habibie (Rumah Masa Kecil)",
+        "Pantai Senggol (Kawasan Pelabuhan)",
+        "Monumen Adipura Parepare",
+        "Tugu Pemuda Parepare",
+        "Tugu Pramuka Simpang Lima",
+        "Sentra Wisata Kuliner Roti Mantao",
+        "Alun-Alun Lapangan Andi Makkasau",
+        "Rumah Adat Saoraja Mallangga"
       ],
       "daftar_akomodasi": [
         "Hotel Pare Wisata (Hotel)",
@@ -92,8 +111,8 @@ const dataSummary = {
     },
     {
       "kecamatan": "Soreang",
-      "jumlah_wisata": 3,
-      "wisata_terjangkau": 3,
+      "jumlah_wisata": 4,
+      "wisata_terjangkau": 4,
       "wisata_belum_terjangkau": 0,
       "persen_terjangkau": 100,
       "total_akomodasi": 3,
@@ -103,7 +122,8 @@ const dataSummary = {
       "daftar_wisata": [
         "Kebun Raya Jompie (Hutan Wisata Jompie)",
         "Taman Syariah Parepare",
-        "Anjungan Cempae"
+        "Anjungan Cempae",
+        "Dermaga Wisata Cappa Galung"
       ],
       "daftar_akomodasi": [
         "Hotel Musa Pratama (Hotel)",

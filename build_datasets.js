@@ -1,7 +1,7 @@
 const fs = require('fs');
 const turf = require('@turf/turf');
 
-// 1. DATA REAL DESTINASI WISATA KOTA PAREPARE (12 TITIK)
+// 1. DATA REAL DESTINASI WISATA KOTA PAREPARE (32 TITIK LENGKAP)
 const rawWisata = [
   {
     id: 1,
@@ -158,6 +158,266 @@ const rawWisata = [
     tiket: "Rp 5.000 / orang",
     deskripsi: "Wisata alam perbukitan dengan pemandangan lanskap perbukitan hijau, spot foto awan kabut pagi hari, dan udara sejuk pegunungan.",
     fasilitas: "Gardu Pandang, Kafe Puncak, Spot Foto Bunga, Parkir Motor"
+  },
+  {
+    id: 13,
+    nama: "Masjid Terapung BJ Habibie",
+    kategori: "Budaya & Landmark",
+    kecamatan: "Bacukiki Barat",
+    alamat: "Jl. Mattirotasi No.1, Cappa Galung, Kec. Bacukiki Barat, Kota Parepare",
+    latitude: -4.026500,
+    longitude: 119.622500,
+    jam_buka: "24 Jam",
+    tiket: "Gratis",
+    deskripsi: "Masjid megah terapung di atas laut pesisir Pantai Mattirotasi dengan kubah keemasan, ikon religi dan arsitektur kebanggaan masyarakat Parepare.",
+    fasilitas: "Dermaga Sholat Laut, Tempat Wudhu Modern, Menara Pandang, Parkir"
+  },
+  {
+    id: 14,
+    nama: "Pantai Senggol (Kawasan Pelabuhan)",
+    kategori: "Bahari & Pantai",
+    kecamatan: "Ujung",
+    alamat: "Jl. Lasinrang, Mallusetasi, Kec. Ujung, Kota Parepare",
+    latitude: -4.014800,
+    longitude: 119.620800,
+    jam_buka: "16.00 - 02.00 WITA",
+    tiket: "Gratis",
+    deskripsi: "Sentra pasar malam dan wisata kuliner pesisir legendaris di dekat pelabuhan dengan aneka jajanan seafood segar dan pemandangan kapal feri.",
+    fasilitas: "Pusat Jajanan Malam, Tempat Duduk Tepi Laut, Dermaga Kapal"
+  },
+  {
+    id: 15,
+    nama: "Stadion Gelora B.J. Habibie (GBH)",
+    kategori: "Rekreasi & Olahraga",
+    kecamatan: "Bacukiki",
+    alamat: "Jl. Gelora Mandiri, Lompoe, Kec. Bacukiki, Kota Parepare",
+    latitude: -4.036650,
+    longitude: 119.645748,
+    jam_buka: "06.00 - 18.00 WITA",
+    tiket: "Gratis (Non-Match)",
+    deskripsi: "Stadion kebanggaan Kota Parepare berstandar Liga 1 yang menjadi markas klub PSM Makassar, dilengkapi jogging track dan ruang publik olahraga.",
+    fasilitas: "Tribun Stadion, Lintasan Lari, Lapangan Bola, Area Parkir Luas"
+  },
+  {
+    id: 16,
+    nama: "Monumen Adipura Parepare",
+    kategori: "Budaya & Landmark",
+    kecamatan: "Ujung",
+    alamat: "Jl. Bau Massepe, Mallusetasi, Kec. Ujung, Kota Parepare",
+    latitude: -4.009016,
+    longitude: 119.621098,
+    jam_buka: "24 Jam",
+    tiket: "Gratis",
+    deskripsi: "Tugu lambang supremasi kebersihan kota di tepi pesisir pantai, menjadi spot foto transit populer bagi pelancong antar-kota.",
+    fasilitas: "Taman Kota, Lampu Hias Malam, Trotoar Pejalan Kaki"
+  },
+  {
+    id: 17,
+    nama: "Tugu Pemuda Parepare",
+    kategori: "Sejarah & Edukasi",
+    kecamatan: "Ujung",
+    alamat: "Jl. Sultan Hasanuddin, Ujung Sabbang, Kec. Ujung, Kota Parepare",
+    latitude: -4.005318,
+    longitude: 119.621872,
+    jam_buka: "24 Jam",
+    tiket: "Gratis",
+    deskripsi: "Tugu sejarah di bundaran kota mengenang semangat persatuan generasi muda pejuang kemerdekaan di kawasan Ajatappareng.",
+    fasilitas: "Bundaran Taman, Air Mancur, Lampu Sorot, Akses Mudah"
+  },
+  {
+    id: 18,
+    nama: "Tugu Pramuka Simpang Lima",
+    kategori: "Budaya & Landmark",
+    kecamatan: "Ujung",
+    alamat: "Jl. Lahalede Simpang Lima, Ujung Baru, Kec. Ujung, Kota Parepare",
+    latitude: -4.012714,
+    longitude: 119.626183,
+    jam_buka: "24 Jam",
+    tiket: "Gratis",
+    deskripsi: "Monumen persimpangan jalan lima poros utama kota dengan ornamen tunas kelapa khas Gerakan Pramuka.",
+    fasilitas: "Pusat Titik Temu, Trotoar, Penerangan Jalan"
+  },
+  {
+    id: 19,
+    nama: "Wisata Bahari Tebing Lumpue",
+    kategori: "Bahari & Pantai",
+    kecamatan: "Bacukiki Barat",
+    alamat: "Jl. Poros Pare-Barru, Lumpue, Kec. Bacukiki Barat, Kota Parepare",
+    latitude: -4.056824,
+    longitude: 119.629561,
+    jam_buka: "06.00 - 18.00 WITA",
+    tiket: "Rp 5.000 / orang",
+    deskripsi: "Formasi tebing karang eksotis yang menjorok ke perairan Selat Makassar dengan ombak tenang dan spot memancing favorit warga.",
+    fasilitas: "Spot Mancing, Gazebo Tepi Tebing, Warung Kopi"
+  },
+  {
+    id: 20,
+    nama: "Taman Lansia & Kebugaran Mattirotasi",
+    kategori: "Rekreasi & Keluarga",
+    kecamatan: "Bacukiki Barat",
+    alamat: "Jl. Mattirotasi Tengah, Kp. Baru, Kec. Bacukiki Barat, Kota Parepare",
+    latitude: -4.018500,
+    longitude: 119.622800,
+    jam_buka: "24 Jam",
+    tiket: "Gratis",
+    deskripsi: "Taman terbuka hijau pesisir khusus dilengkapi jalur terapi bebatuan refleksi kaki, peralatan gym luar ruang, dan pepohonan rindang.",
+    fasilitas: "Jalur Refleksi Batu, Outdoor Gym, Bangku Taman, Parkir Sepeda"
+  },
+  {
+    id: 21,
+    nama: "Bendungan Lappa Angin",
+    kategori: "Alam & Ekowisata",
+    kecamatan: "Bacukiki",
+    alamat: "Watang Bacukiki, Kec. Bacukiki, Kota Parepare",
+    latitude: -4.062620,
+    longitude: 119.678357,
+    jam_buka: "07.00 - 17.30 WITA",
+    tiket: "Gratis",
+    deskripsi: "Bendungan irigasi sungai alami berundak yang dikelilingi hutan bambu lebat dan perbukitan hijau, sering dijadikan lokasi piknik dan mandi sungai.",
+    fasilitas: "Bantaran Sungai Alami, Rindang Pohon Bambu, Warung Warga"
+  },
+  {
+    id: 22,
+    nama: "Puncak Bili-Bili Bacukiki",
+    kategori: "Alam & Ekowisata",
+    kecamatan: "Bacukiki",
+    alamat: "Lemba Baqa, Kel. Lemoe, Kec. Bacukiki, Kota Parepare",
+    latitude: -4.053200,
+    longitude: 119.669800,
+    jam_buka: "06.00 - 19.00 WITA",
+    tiket: "Rp 5.000 / orang",
+    deskripsi: "Titik tertinggi perbukitan di kawasan timur Parepare yang menyajikan pemandangan 360 derajat lanskap kota dan laut lepas dari kejauhan.",
+    fasilitas: "Area Camping, Gazebo Puncak, Spot Foto Lanskap"
+  },
+  {
+    id: 23,
+    nama: "Sentra Wisata Kuliner Roti Mantao",
+    kategori: "Budaya & Landmark",
+    kecamatan: "Ujung",
+    alamat: "Jl. Bau Massepe, Labukkang, Kec. Ujung, Kota Parepare",
+    latitude: -4.007500,
+    longitude: 119.625100,
+    jam_buka: "07.00 - 22.00 WITA",
+    tiket: "Gratis",
+    deskripsi: "Pusat oleh-oleh kuliner legendaris khas Parepare yang memproduksi Roti Mantao lembut isi daging khas etnis Tionghoa-Bugis sejak puluhan tahun.",
+    fasilitas: "Toko Oleh-Oleh, Dapur Pembuatan Terbuka, Tempat Santai"
+  },
+  {
+    id: 24,
+    nama: "Dermaga Wisata Cappa Galung",
+    kategori: "Bahari & Pantai",
+    kecamatan: "Soreang",
+    alamat: "Jl. Industri Kecil, Cappa Galung, Kec. Soreang, Kota Parepare",
+    latitude: -3.990200,
+    longitude: 119.627900,
+    jam_buka: "24 Jam",
+    tiket: "Gratis",
+    deskripsi: "Dermaga perahu tradisional nelayan dengan dermaga kayu menjorok ke teluk, tempat favorit menikmati senja dan berburu ikan segar.",
+    fasilitas: "Dermaga Kayu, Pasar Ikan Segar, Tempat Parkir"
+  },
+  {
+    id: 25,
+    nama: "Wisata Agro & Buah Lompoe",
+    kategori: "Alam & Ekowisata",
+    kecamatan: "Bacukiki",
+    alamat: "Jl. Jend. Sudirman Km.5, Lompoe, Kec. Bacukiki, Kota Parepare",
+    latitude: -4.012892,
+    longitude: 119.653494,
+    jam_buka: "08.00 - 17.00 WITA",
+    tiket: "Rp 10.000 / orang",
+    deskripsi: "Kawasan agrowisata perkebunan buah lokal terpadu dengan kebun durian, rambutan, mangga, dan tempat edukasi pertanian bagi pelajar.",
+    fasilitas: "Kebun Petik Buah, Saung Pertemuan, Edukasi Tani, Kantin Alami"
+  },
+  {
+    id: 26,
+    nama: "Pantai Paputo (Pasir Putih Tonrangeng)",
+    kategori: "Bahari & Pantai",
+    kecamatan: "Bacukiki Barat",
+    alamat: "Jl. Latassakka, Lumpue, Kec. Bacukiki Barat, Kota Parepare",
+    latitude: -4.037500,
+    longitude: 119.624800,
+    jam_buka: "06.00 - 18.00 WITA",
+    tiket: "Rp 10.000 / orang",
+    deskripsi: "Pantai pasir putih bersih dengan panorama laut tenang, jembatan kayu estetik ke arah laut, dan fasilitas bermain air populer bagi wisatawan.",
+    fasilitas: "Gazebo Tepi Pantai, Jembatan Kayu Menjorok ke Laut, Banana Boat, Kantin, Parkir"
+  },
+  {
+    id: 27,
+    nama: "Alun-Alun Lapangan Andi Makkasau",
+    kategori: "Rekreasi & Olahraga",
+    kecamatan: "Ujung",
+    alamat: "Jl. Andi Makkasau, Mallusetasi, Kec. Ujung, Kota Parepare",
+    latitude: -4.011800,
+    longitude: 119.623100,
+    jam_buka: "24 Jam",
+    tiket: "Gratis",
+    deskripsi: "Alun-alun sentral jantung Kota Parepare dengan lintasan jogging, lapangan bola, sarana senam terbuka, dan pusat keramaian sore hari warga.",
+    fasilitas: "Jogging Track, Sarana Olahraga Terbuka, Pujasera, Area Senam, Parkir"
+  },
+  {
+    id: 28,
+    nama: "Rumah Adat Saoraja Mallangga",
+    kategori: "Sejarah & Edukasi",
+    kecamatan: "Ujung",
+    alamat: "Jl. Karaeng Burane No.12, Ujung Sabbang, Kec. Ujung, Kota Parepare",
+    latitude: -4.004200,
+    longitude: 119.623800,
+    jam_buka: "08.00 - 16.00 WITA",
+    tiket: "Donasi Sukarela",
+    deskripsi: "Rumah panggung tradisional Bugis bersejarah peninggalan Raja Parepare terdahulu yang menyimpan pusaka kerajaan, naskah kuno, dan benda adat Ajatappareng.",
+    fasilitas: "Pemandu Budaya, Koleksi Benda Antik Kerajaan, Ruang Diskusi Budaya"
+  },
+  {
+    id: 29,
+    nama: "Ekowisata Hutan Mangrove Karajae",
+    kategori: "Alam & Ekowisata",
+    kecamatan: "Bacukiki Barat",
+    alamat: "Kawasan Muara Sungai Karajae, Lumpue, Kec. Bacukiki Barat, Kota Parepare",
+    latitude: -4.034500,
+    longitude: 119.628200,
+    jam_buka: "07.00 - 17.30 WITA",
+    tiket: "Rp 5.000 / orang",
+    deskripsi: "Kawasan konservasi hutan bakau pesisir muara sungai Karajae dengan boardwalk kayu melintasi rimbunnya pohon bakau dan habitat burung pesisir.",
+    fasilitas: "Boardwalk Kayu, Menara Pengamat Burung, Gazebo Edukasi, Spot Foto"
+  },
+  {
+    id: 30,
+    nama: "Pemandian Alam Bulu Langi",
+    kategori: "Alam & Ekowisata",
+    kecamatan: "Bacukiki",
+    alamat: "Kel. Galung Maloang, Kec. Bacukiki, Kota Parepare",
+    latitude: -4.025600,
+    longitude: 119.674500,
+    jam_buka: "08.00 - 17.00 WITA",
+    tiket: "Rp 5.000 / orang",
+    deskripsi: "Sumber mata air alami jernih dan segar yang mengalir di kaki perbukitan Galung Maloang, dikelilingi rindang pepohonan hijau yang sejuk.",
+    fasilitas: "Kolam Mata Air Alami, Ruang Ganti, Saung Santai, Warung Desa"
+  },
+  {
+    id: 31,
+    nama: "Danau Cappa Batue Galung Maloang",
+    kategori: "Alam & Ekowisata",
+    kecamatan: "Bacukiki",
+    alamat: "Kel. Galung Maloang, Kec. Bacukiki, Kota Parepare",
+    latitude: -4.008400,
+    longitude: 119.664200,
+    jam_buka: "06.00 - 18.00 WITA",
+    tiket: "Gratis",
+    deskripsi: "Danau alami tenang di kawasan lembah Bacukiki yang asri, menjadi tempat favorit memancing air tawar dan menikmati ketenangan alam pedesaan.",
+    fasilitas: "Spot Mancing, Gazebo Tepi Danau, Area Parkir Motor"
+  },
+  {
+    id: 32,
+    nama: "Wisata Pemandangan Bukit Kenari",
+    kategori: "Rekreasi & Bahari",
+    kecamatan: "Bacukiki Barat",
+    alamat: "Kawasan Perbukitan Kenari, Bumi Harapan, Kec. Bacukiki Barat, Kota Parepare",
+    latitude: -4.031500,
+    longitude: 119.631800,
+    jam_buka: "07.00 - 21.00 WITA",
+    tiket: "Rp 10.000 / orang",
+    deskripsi: "Destinasi wisata lereng bukit dengan teras pemandangan langsung menghadap lekukan Teluk Parepare, kolam renang outdoor, dan kafe santai.",
+    fasilitas: "Kolam Renang Bukit, Kafe Pemandangan Laut, Spot Sunset, Parkir Luas"
   }
 ];
 
@@ -457,7 +717,7 @@ const rawHotel = [
 ];
 
 // 3. ANALISIS SPASIAL: BUFFER 2 KM & KETERJANGKAUAN WISATA
-console.log(`Memulai analisis spasial jangkauan 2 km dari ${rawHotel.length} fasilitas akomodasi...`);
+console.log(`Memulai analisis spasial jangkauan 2 km dari ${rawHotel.length} fasilitas akomodasi ke ${rawWisata.length} objek wisata...`);
 
 // Konversi akomodasi menjadi GeoJSON FeatureCollection
 const hotelFeatures = rawHotel.map(h => {
@@ -483,7 +743,7 @@ for (let i = 1; i < individualBuffers.length; i++) {
   try {
     mergedBuffer = turf.union(turf.featureCollection([mergedBuffer, individualBuffers[i]]));
   } catch (e) {
-    // Abaikan jika overlap
+    // Abaikan overlap
   }
 }
 mergedBuffer.properties = {
@@ -608,7 +868,7 @@ Dosen: Andang Suryana Soma, S.Hut., M.P., Ph.D.
    - Publikasi: "Kota Parepare Dalam Angka 2024"
    - Atribut: Luas wilayah (km²), Jumlah Penduduk (jiwa), Kepadatan, Jumlah Kelurahan
 
-3. Titik Objek Wisata (12 Destinasi):
+3. Titik Objek Wisata (32 Destinasi):
    - Sumber: OpenStreetMap (OSM) Contributors & Disporapar Kota Parepare (2024/2025)
    - Lisensi: Open Database License (ODbL)
 
@@ -634,5 +894,5 @@ console.log(`Wisata Terjangkau Akomodasi (<= 2 km): ${totalTerjangkau} (${persen
 console.log(`Wisata Belum Terjangkau (> 2 km): ${totalBelumTerjangkau}`);
 console.log("\nRekapitulasi per Kecamatan:");
 rekapKecamatan.forEach(r => {
-  console.log(`- ${r.kecamatan}: ${r.jumlah_wisata} wisata (${r.wisata_terjangkau} terjangkau, ${r.persen_terjangkau}%), ${r.total_akomodasi} akomodasi (${r.hotel_bintang} hotel, ${r.wisma} wisma, ${r.penginapan} penginapan)`);
+  console.log(`- ${r.kecamatan}: ${r.jumlah_wisata} wisata (${r.wisata_terjangkau} terjangkau, ${r.persen_terjangkau}%), ${r.total_akomodasi} akomodasi`);
 });

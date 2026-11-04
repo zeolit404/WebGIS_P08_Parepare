@@ -560,6 +560,11 @@ function initCharts() {
   const dataWismaVal = rekap.map(r => r.wisma || 0);
   const dataPenginapanVal = rekap.map(r => r.penginapan || 0);
 
+  const totalWisataCount = typeof dataWisata !== 'undefined' ? dataWisata.features.length : 32;
+  const totalHotelCount = typeof dataHotel !== 'undefined' ? dataHotel.features.filter(h => h.properties.tipe === 'Hotel').length : 10;
+  const totalWismaCount = typeof dataHotel !== 'undefined' ? dataHotel.features.filter(h => h.properties.tipe === 'Wisma').length : 7;
+  const totalPenginapanCount = typeof dataHotel !== 'undefined' ? dataHotel.features.filter(h => h.properties.tipe === 'Penginapan').length : 5;
+
   // 1. Bar Chart: Wisata vs Komposisi Akomodasi (Dual-Stack per Kecamatan)
   const ctxBar = document.getElementById('chart-kecamatan');
   if (ctxBar) {
@@ -569,7 +574,7 @@ function initCharts() {
         labels: labels,
         datasets: [
           {
-            label: 'Wisata (12)',
+            label: `Wisata (${totalWisataCount})`,
             data: dataWisataVal,
             backgroundColor: '#10b981',
             stack: 'wisata',
@@ -578,7 +583,7 @@ function initCharts() {
             categoryPercentage: 0.8
           },
           {
-            label: 'Hotel Bintang (10)',
+            label: `Hotel (${totalHotelCount})`,
             data: dataHotelVal,
             backgroundColor: '#0284c7',
             stack: 'akomodasi',
@@ -587,7 +592,7 @@ function initCharts() {
             categoryPercentage: 0.8
           },
           {
-            label: 'Wisma & Guest House (7)',
+            label: `Wisma (${totalWismaCount})`,
             data: dataWismaVal,
             backgroundColor: '#8b5cf6',
             stack: 'akomodasi',
@@ -596,9 +601,9 @@ function initCharts() {
             categoryPercentage: 0.8
           },
           {
-            label: 'Penginapan & Homestay (5)',
+            label: `Penginapan (${totalPenginapanCount})`,
             data: dataPenginapanVal,
-            backgroundColor: '#f59e0b',
+            backgroundColor: '#0d9488',
             stack: 'akomodasi',
             borderRadius: 4,
             barPercentage: 0.8,

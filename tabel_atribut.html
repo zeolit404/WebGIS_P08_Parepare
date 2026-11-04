@@ -354,7 +354,7 @@
     <!-- TAB NAVIGATION -->
     <div class="tab-nav">
       <button class="tab-btn active" onclick="switchTab('wisata', this)">
-        <i class="fa-solid fa-umbrella-beach"></i> Objek Wisata <span class="badge-count" id="count-tab-wisata">12</span>
+        <i class="fa-solid fa-umbrella-beach"></i> Objek Wisata <span class="badge-count" id="count-tab-wisata">32</span>
       </button>
       <button class="tab-btn" onclick="switchTab('hotel', this)">
         <i class="fa-solid fa-hotel"></i> Akomodasi & Penginapan <span class="badge-count" id="count-tab-hotel">22</span>
@@ -363,7 +363,7 @@
         <i class="fa-solid fa-draw-polygon"></i> Batas Kecamatan (BPS & BIG) <span class="badge-count" id="count-tab-kecamatan">4</span>
       </button>
       <button class="tab-btn" onclick="switchTab('analisis', this)">
-        <i class="fa-solid fa-chart-pie"></i> Rekap Analisis Buffer 2 Km <span class="badge-count">92%</span>
+        <i class="fa-solid fa-chart-pie"></i> Rekap Analisis Buffer 2 Km <span class="badge-count" id="count-tab-analisis">88%</span>
       </button>
     </div>
 
@@ -529,7 +529,7 @@
         </div>
         <div class="table-footer">
           <span>Parameter: Geodesic Buffer Radius 2.000 Meter (Turf.js)</span>
-          <span>Kesimpulan: 8 dari 12 objek wisata (67%) telah terlayani akomodasi hotel</span>
+          <span id="footer-summary-kesimpulan">Kesimpulan: 28 dari 32 objek wisata (88%) telah terlayani akomodasi hotel (radius ≤ 2 km)</span>
         </div>
       </div>
     </div>
@@ -733,6 +733,25 @@
 
     // Initial load
     function initAllTables() {
+      if (typeof dataWisata !== 'undefined') {
+        const cw = document.getElementById('count-tab-wisata');
+        if (cw) cw.textContent = dataWisata.features.length;
+      }
+      if (typeof dataHotel !== 'undefined') {
+        const ch = document.getElementById('count-tab-hotel');
+        if (ch) ch.textContent = dataHotel.features.length;
+      }
+      if (typeof dataKecamatan !== 'undefined') {
+        const ck = document.getElementById('count-tab-kecamatan');
+        if (ck) ck.textContent = dataKecamatan.features.length;
+      }
+      if (typeof dataSummary !== 'undefined' && dataSummary.metrik_kota) {
+        const ca = document.getElementById('count-tab-analisis');
+        if (ca) ca.textContent = dataSummary.metrik_kota.persentase_terjangkau + '%';
+        const fsk = document.getElementById('footer-summary-kesimpulan');
+        if (fsk) fsk.textContent = `Kesimpulan: ${dataSummary.metrik_kota.wisata_terjangkau} dari ${dataSummary.metrik_kota.total_wisata} objek wisata (${dataSummary.metrik_kota.persentase_terjangkau}%) telah terlayani akomodasi hotel (radius ≤ 2 km)`;
+      }
+
       renderTabelWisata();
       renderTabelHotel();
       renderTabelKecamatan();

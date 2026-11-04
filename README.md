@@ -32,36 +32,36 @@ Menganalisis jangkauan aksesibilitas spasial fasilitas akomodasi (hotel/penginap
 |:---:|:---|:---:|:---|:---:|
 | 1 | **Batas Administrasi Kecamatan** | Polygon (4 Fitur) | Ina-Geoportal Badan Informasi Geospasial (BIG) Skala 1:50.000 | Lisensi Data Terbuka BIG |
 | 2 | **Data Demografi & Wilayah** | Atribut Tabular | BPS Kota Parepare ("Kota Parepare Dalam Angka 2024") | BPS Indonesia |
-| 3 | **Titik Objek Wisata** | Point (12 Fitur) | OpenStreetMap Contributors & Disporapar Kota Parepare (2024/2025) | Open Database License (ODbL) |
-| 4 | **Titik Hotel & Akomodasi** | Point (10 Fitur) | OpenStreetMap Contributors & PHRI Kota Parepare (2024/2025) | Open Database License (ODbL) |
-| 5 | **Area Buffer Hotel (2 Km)** | MultiPolygon / Polygon | Hasil Analisis Geodesic Buffer (Turf.js) | Data Olahan Mahasiswa |
+| 3 | **Titik Objek Wisata** | Point (32 Fitur) | OpenStreetMap Contributors & Disporapar Kota Parepare (2024/2025) | Open Database License (ODbL) |
+| 4 | **Titik Akomodasi (Hotel, Wisma, Penginapan)** | Point (22 Fitur) | OpenStreetMap Contributors, PHRI & Direktori Penginapan (2024/2025) | Open Database License (ODbL) |
+| 5 | **Area Buffer Akomodasi (2 Km)** | MultiPolygon / Polygon | Hasil Analisis Geodesic Buffer (Turf.js) | Data Olahan Mahasiswa |
 
 ---
 
 ## 3. Hasil Analisis Spasial Utama (Radius 2 Km)
 
-* **Total Destinasi Wisata**: 12 Objek
-* **Total Akomodasi Hotel**: 10 Hotel
-* **Wisata Terjangkau Hotel (≤ 2 km)**: **8 Objek (66,7% &asymp; 67%)**
-* **Wisata Belum Terjangkau Hotel (> 2 km)**: **4 Objek (33,3% &asymp; 33%)**
+* **Total Destinasi Wisata**: 32 Objek
+* **Total Akomodasi**: 22 Unit (10 Hotel Bintang & Melati, 7 Wisma & Guest House, 5 Penginapan & Homestay)
+* **Wisata Terjangkau Akomodasi (≤ 2 km)**: **28 Objek (87,5% &asymp; 88%)**
+* **Wisata Belum Terjangkau Akomodasi (> 2 km)**: **4 Objek (12,5% &asymp; 12%)**
 
 ### Rekapitulasi per Kecamatan:
 1. **Kecamatan Ujung**: 
-   * Wisata: 3 (Semua terjangkau 100%)
-   * Hotel: 6 unit
-   * *Analisis*: Merupakan pusat kota dan kawasan pelabuhan dengan konsentrasi hotel tertinggi.
+   * Wisata: 10 (Semua terjangkau 100%)
+   * Akomodasi: 11 unit (6 Hotel, 3 Wisma, 2 Penginapan)
+   * *Analisis*: Pusat kota dan kawasan pelabuhan dengan konsentrasi akomodasi tertinggi.
 2. **Kecamatan Bacukiki Barat**: 
-   * Wisata: 3 (Semua terjangkau 100%)
-   * Hotel: 3 unit
-   * *Analisis*: Kawasan pesisir wisata bahari (Pantai Mattirotasi, TRS, Pantai Lumpue) memiliki aksesibilitas akomodasi yang sangat prima.
+   * Wisata: 9 (Semua terjangkau 100%)
+   * Akomodasi: 6 unit (3 Hotel, 3 Wisma)
+   * *Analisis*: Kawasan pesisir wisata bahari prima (Pantai Mattirotasi, TRS, Pantai Lumpue, Pantai Paputo, Tebing Lumpue) terlayani optimal.
 3. **Kecamatan Soreang**: 
-   * Wisata: 3 (2 terjangkau / 67%, 1 belum terjangkau)
-   * Hotel: 1 unit
-   * *Analisis*: Memiliki wisata hutan kota (Kebun Raya Jompie) dan anjungan pesisir.
+   * Wisata: 4 (Semua terjangkau 100%)
+   * Akomodasi: 3 unit (1 Hotel, 1 Wisma, 1 Penginapan)
+   * *Analisis*: Wisata alam hutan kota (Kebun Raya Jompie), Anjungan Cempae, dan Taman Syariah terjangkau baik.
 4. **Kecamatan Bacukiki**: 
-   * Wisata: 3 (0 terjangkau / 0%)
-   * Hotel: 0 unit
-   * *Analisis*: Merupakan area pedalaman dengan potensi agrowisata dan ekowisata alam (Ladoma, Salatiga Hills, Waterboom), namun menjadi **blank spot** utama karena ketiadaan hotel dalam radius 2 km.
+   * Wisata: 9 (5 terjangkau / 56%, 4 belum terjangkau / 44%)
+   * Akomodasi: 2 unit (Penginapan/Homestay pedesaan)
+   * *Analisis*: Wilayah perbukitan dan lembah pedalaman. Objek wisata pedalaman (Salatiga Hills, Bendungan Lappa Angin, Puncak Bili-Bili, Pemandian Bulu Langi) berada di luar buffer 2 km dan berpotensi besar untuk investasi *eco-lodge* / *glamping*.
 
 ---
 

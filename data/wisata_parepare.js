@@ -348,6 +348,586 @@ const dataWisata = {
           -4.0612
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13,
+        "nama": "Masjid Terapung BJ Habibie",
+        "kategori": "Budaya & Landmark",
+        "kecamatan": "Bacukiki Barat",
+        "alamat": "Jl. Mattirotasi No.1, Cappa Galung, Kec. Bacukiki Barat, Kota Parepare",
+        "latitude": -4.0265,
+        "longitude": 119.6225,
+        "jam_buka": "24 Jam",
+        "tiket": "Gratis",
+        "deskripsi": "Masjid megah terapung di atas laut pesisir Pantai Mattirotasi dengan kubah keemasan, ikon religi dan arsitektur kebanggaan masyarakat Parepare.",
+        "fasilitas": "Dermaga Sholat Laut, Tempat Wudhu Modern, Menara Pandang, Parkir",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Pare Beach Hotel",
+        "tipe_akomodasi_terdekat": "Hotel",
+        "jarak_ke_hotel_m": 408,
+        "jarak_ke_hotel_km": "0.41"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6225,
+          -4.0265
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 14,
+        "nama": "Pantai Senggol (Kawasan Pelabuhan)",
+        "kategori": "Bahari & Pantai",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Lasinrang, Mallusetasi, Kec. Ujung, Kota Parepare",
+        "latitude": -4.0148,
+        "longitude": 119.6208,
+        "jam_buka": "16.00 - 02.00 WITA",
+        "tiket": "Gratis",
+        "deskripsi": "Sentra pasar malam dan wisata kuliner pesisir legendaris di dekat pelabuhan dengan aneka jajanan seafood segar dan pemandangan kapal feri.",
+        "fasilitas": "Pusat Jajanan Malam, Tempat Duduk Tepi Laut, Dermaga Kapal",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Wisma Transit Parepare",
+        "tipe_akomodasi_terdekat": "Wisma",
+        "jarak_ke_hotel_m": 78,
+        "jarak_ke_hotel_km": "0.08"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6208,
+          -4.0148
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 15,
+        "nama": "Stadion Gelora B.J. Habibie (GBH)",
+        "kategori": "Rekreasi & Olahraga",
+        "kecamatan": "Bacukiki",
+        "alamat": "Jl. Gelora Mandiri, Lompoe, Kec. Bacukiki, Kota Parepare",
+        "latitude": -4.03665,
+        "longitude": 119.645748,
+        "jam_buka": "06.00 - 18.00 WITA",
+        "tiket": "Gratis (Non-Match)",
+        "deskripsi": "Stadion kebanggaan Kota Parepare berstandar Liga 1 yang menjadi markas klub PSM Makassar, dilengkapi jogging track dan ruang publik olahraga.",
+        "fasilitas": "Tribun Stadion, Lintasan Lari, Lapangan Bola, Area Parkir Luas",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Homestay Syariah Bacukiki",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 887,
+        "jarak_ke_hotel_km": "0.89"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.645748,
+          -4.03665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 16,
+        "nama": "Monumen Adipura Parepare",
+        "kategori": "Budaya & Landmark",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Bau Massepe, Mallusetasi, Kec. Ujung, Kota Parepare",
+        "latitude": -4.009016,
+        "longitude": 119.621098,
+        "jam_buka": "24 Jam",
+        "tiket": "Gratis",
+        "deskripsi": "Tugu lambang supremasi kebersihan kota di tepi pesisir pantai, menjadi spot foto transit populer bagi pelancong antar-kota.",
+        "fasilitas": "Taman Kota, Lampu Hias Malam, Trotoar Pejalan Kaki",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Wisma Melati Indah",
+        "tipe_akomodasi_terdekat": "Wisma",
+        "jarak_ke_hotel_m": 372,
+        "jarak_ke_hotel_km": "0.37"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.621098,
+          -4.009016
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 17,
+        "nama": "Tugu Pemuda Parepare",
+        "kategori": "Sejarah & Edukasi",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Sultan Hasanuddin, Ujung Sabbang, Kec. Ujung, Kota Parepare",
+        "latitude": -4.005318,
+        "longitude": 119.621872,
+        "jam_buka": "24 Jam",
+        "tiket": "Gratis",
+        "deskripsi": "Tugu sejarah di bundaran kota mengenang semangat persatuan generasi muda pejuang kemerdekaan di kawasan Ajatappareng.",
+        "fasilitas": "Bundaran Taman, Air Mancur, Lampu Sorot, Akses Mudah",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Hotel Pare Wisata",
+        "tipe_akomodasi_terdekat": "Hotel",
+        "jarak_ke_hotel_m": 146,
+        "jarak_ke_hotel_km": "0.15"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.621872,
+          -4.005318
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 18,
+        "nama": "Tugu Pramuka Simpang Lima",
+        "kategori": "Budaya & Landmark",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Lahalede Simpang Lima, Ujung Baru, Kec. Ujung, Kota Parepare",
+        "latitude": -4.012714,
+        "longitude": 119.626183,
+        "jam_buka": "24 Jam",
+        "tiket": "Gratis",
+        "deskripsi": "Monumen persimpangan jalan lima poros utama kota dengan ornamen tunas kelapa khas Gerakan Pramuka.",
+        "fasilitas": "Pusat Titik Temu, Trotoar, Penerangan Jalan",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Penginapan Surya Mandiri (Guest House)",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 149,
+        "jarak_ke_hotel_km": "0.15"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.626183,
+          -4.012714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 19,
+        "nama": "Wisata Bahari Tebing Lumpue",
+        "kategori": "Bahari & Pantai",
+        "kecamatan": "Bacukiki Barat",
+        "alamat": "Jl. Poros Pare-Barru, Lumpue, Kec. Bacukiki Barat, Kota Parepare",
+        "latitude": -4.056824,
+        "longitude": 119.629561,
+        "jam_buka": "06.00 - 18.00 WITA",
+        "tiket": "Rp 5.000 / orang",
+        "deskripsi": "Formasi tebing karang eksotis yang menjorok ke perairan Selat Makassar dengan ombak tenang dan spot memancing favorit warga.",
+        "fasilitas": "Spot Mancing, Gazebo Tepi Tebing, Warung Kopi",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Hotel Puri Gandaria",
+        "tipe_akomodasi_terdekat": "Hotel",
+        "jarak_ke_hotel_m": 1006,
+        "jarak_ke_hotel_km": "1.01"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.629561,
+          -4.056824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 20,
+        "nama": "Taman Lansia & Kebugaran Mattirotasi",
+        "kategori": "Rekreasi & Keluarga",
+        "kecamatan": "Bacukiki Barat",
+        "alamat": "Jl. Mattirotasi Tengah, Kp. Baru, Kec. Bacukiki Barat, Kota Parepare",
+        "latitude": -4.0185,
+        "longitude": 119.6228,
+        "jam_buka": "24 Jam",
+        "tiket": "Gratis",
+        "deskripsi": "Taman terbuka hijau pesisir khusus dilengkapi jalur terapi bebatuan refleksi kaki, peralatan gym luar ruang, dan pepohonan rindang.",
+        "fasilitas": "Jalur Refleksi Batu, Outdoor Gym, Bangku Taman, Parkir Sepeda",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Wisma Mario Indah Mattirotasi",
+        "tipe_akomodasi_terdekat": "Wisma",
+        "jarak_ke_hotel_m": 181,
+        "jarak_ke_hotel_km": "0.18"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6228,
+          -4.0185
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 21,
+        "nama": "Bendungan Lappa Angin",
+        "kategori": "Alam & Ekowisata",
+        "kecamatan": "Bacukiki",
+        "alamat": "Watang Bacukiki, Kec. Bacukiki, Kota Parepare",
+        "latitude": -4.06262,
+        "longitude": 119.678357,
+        "jam_buka": "07.00 - 17.30 WITA",
+        "tiket": "Gratis",
+        "deskripsi": "Bendungan irigasi sungai alami berundak yang dikelilingi hutan bambu lebat dan perbukitan hijau, sering dijadikan lokasi piknik dan mandi sungai.",
+        "fasilitas": "Bantaran Sungai Alami, Rindang Pohon Bambu, Warung Warga",
+        "terjangkau_hotel_2km": false,
+        "status_akses": "Belum Terjangkau (> 2 km)",
+        "hotel_terdekat": "Homestay Syariah Bacukiki",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 3741,
+        "jarak_ke_hotel_km": "3.74"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.678357,
+          -4.06262
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 22,
+        "nama": "Puncak Bili-Bili Bacukiki",
+        "kategori": "Alam & Ekowisata",
+        "kecamatan": "Bacukiki",
+        "alamat": "Lemba Baqa, Kel. Lemoe, Kec. Bacukiki, Kota Parepare",
+        "latitude": -4.0532,
+        "longitude": 119.6698,
+        "jam_buka": "06.00 - 19.00 WITA",
+        "tiket": "Rp 5.000 / orang",
+        "deskripsi": "Titik tertinggi perbukitan di kawasan timur Parepare yang menyajikan pemandangan 360 derajat lanskap kota dan laut lepas dari kejauhan.",
+        "fasilitas": "Area Camping, Gazebo Puncak, Spot Foto Lanskap",
+        "terjangkau_hotel_2km": false,
+        "status_akses": "Belum Terjangkau (> 2 km)",
+        "hotel_terdekat": "Homestay Syariah Bacukiki",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 2355,
+        "jarak_ke_hotel_km": "2.35"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6698,
+          -4.0532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 23,
+        "nama": "Sentra Wisata Kuliner Roti Mantao",
+        "kategori": "Budaya & Landmark",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Bau Massepe, Labukkang, Kec. Ujung, Kota Parepare",
+        "latitude": -4.0075,
+        "longitude": 119.6251,
+        "jam_buka": "07.00 - 22.00 WITA",
+        "tiket": "Gratis",
+        "deskripsi": "Pusat oleh-oleh kuliner legendaris khas Parepare yang memproduksi Roti Mantao lembut isi daging khas etnis Tionghoa-Bugis sejak puluhan tahun.",
+        "fasilitas": "Toko Oleh-Oleh, Dapur Pembuatan Terbuka, Tempat Santai",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Hotel Bugis",
+        "tipe_akomodasi_terdekat": "Hotel",
+        "jarak_ke_hotel_m": 36,
+        "jarak_ke_hotel_km": "0.04"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6251,
+          -4.0075
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 24,
+        "nama": "Dermaga Wisata Cappa Galung",
+        "kategori": "Bahari & Pantai",
+        "kecamatan": "Soreang",
+        "alamat": "Jl. Industri Kecil, Cappa Galung, Kec. Soreang, Kota Parepare",
+        "latitude": -3.9902,
+        "longitude": 119.6279,
+        "jam_buka": "24 Jam",
+        "tiket": "Gratis",
+        "deskripsi": "Dermaga perahu tradisional nelayan dengan dermaga kayu menjorok ke teluk, tempat favorit menikmati senja dan berburu ikan segar.",
+        "fasilitas": "Dermaga Kayu, Pasar Ikan Segar, Tempat Parkir",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Wisma Bintang Soreang",
+        "tipe_akomodasi_terdekat": "Wisma",
+        "jarak_ke_hotel_m": 85,
+        "jarak_ke_hotel_km": "0.09"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6279,
+          -3.9902
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 25,
+        "nama": "Wisata Agro & Buah Lompoe",
+        "kategori": "Alam & Ekowisata",
+        "kecamatan": "Bacukiki",
+        "alamat": "Jl. Jend. Sudirman Km.5, Lompoe, Kec. Bacukiki, Kota Parepare",
+        "latitude": -4.012892,
+        "longitude": 119.653494,
+        "jam_buka": "08.00 - 17.00 WITA",
+        "tiket": "Rp 10.000 / orang",
+        "deskripsi": "Kawasan agrowisata perkebunan buah lokal terpadu dengan kebun durian, rambutan, mangga, dan tempat edukasi pertanian bagi pelajar.",
+        "fasilitas": "Kebun Petik Buah, Saung Pertemuan, Edukasi Tani, Kantin Alami",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Penginapan Lembah Hijau Bacukiki",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 1496,
+        "jarak_ke_hotel_km": "1.50"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.653494,
+          -4.012892
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 26,
+        "nama": "Pantai Paputo (Pasir Putih Tonrangeng)",
+        "kategori": "Bahari & Pantai",
+        "kecamatan": "Bacukiki Barat",
+        "alamat": "Jl. Latassakka, Lumpue, Kec. Bacukiki Barat, Kota Parepare",
+        "latitude": -4.0375,
+        "longitude": 119.6248,
+        "jam_buka": "06.00 - 18.00 WITA",
+        "tiket": "Rp 10.000 / orang",
+        "deskripsi": "Pantai pasir putih bersih dengan panorama laut tenang, jembatan kayu estetik ke arah laut, dan fasilitas bermain air populer bagi wisatawan.",
+        "fasilitas": "Gazebo Tepi Pantai, Jembatan Kayu Menjorok ke Laut, Banana Boat, Kantin, Parkir",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Wisma Kenari Indah",
+        "tipe_akomodasi_terdekat": "Wisma",
+        "jarak_ke_hotel_m": 493,
+        "jarak_ke_hotel_km": "0.49"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6248,
+          -4.0375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 27,
+        "nama": "Alun-Alun Lapangan Andi Makkasau",
+        "kategori": "Rekreasi & Olahraga",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Andi Makkasau, Mallusetasi, Kec. Ujung, Kota Parepare",
+        "latitude": -4.0118,
+        "longitude": 119.6231,
+        "jam_buka": "24 Jam",
+        "tiket": "Gratis",
+        "deskripsi": "Alun-alun sentral jantung Kota Parepare dengan lintasan jogging, lapangan bola, sarana senam terbuka, dan pusat keramaian sore hari warga.",
+        "fasilitas": "Jogging Track, Sarana Olahraga Terbuka, Pujasera, Area Senam, Parkir",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Penginapan Sejahtera Pelabuhan",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 169,
+        "jarak_ke_hotel_km": "0.17"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6231,
+          -4.0118
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 28,
+        "nama": "Rumah Adat Saoraja Mallangga",
+        "kategori": "Sejarah & Edukasi",
+        "kecamatan": "Ujung",
+        "alamat": "Jl. Karaeng Burane No.12, Ujung Sabbang, Kec. Ujung, Kota Parepare",
+        "latitude": -4.0042,
+        "longitude": 119.6238,
+        "jam_buka": "08.00 - 16.00 WITA",
+        "tiket": "Donasi Sukarela",
+        "deskripsi": "Rumah panggung tradisional Bugis bersejarah peninggalan Raja Parepare terdahulu yang menyimpan pusaka kerajaan, naskah kuno, dan benda adat Ajatappareng.",
+        "fasilitas": "Pemandu Budaya, Koleksi Benda Antik Kerajaan, Ruang Diskusi Budaya",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Hotel Pare Wisata",
+        "tipe_akomodasi_terdekat": "Hotel",
+        "jarak_ke_hotel_m": 214,
+        "jarak_ke_hotel_km": "0.21"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6238,
+          -4.0042
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29,
+        "nama": "Ekowisata Hutan Mangrove Karajae",
+        "kategori": "Alam & Ekowisata",
+        "kecamatan": "Bacukiki Barat",
+        "alamat": "Kawasan Muara Sungai Karajae, Lumpue, Kec. Bacukiki Barat, Kota Parepare",
+        "latitude": -4.0345,
+        "longitude": 119.6282,
+        "jam_buka": "07.00 - 17.30 WITA",
+        "tiket": "Rp 5.000 / orang",
+        "deskripsi": "Kawasan konservasi hutan bakau pesisir muara sungai Karajae dengan boardwalk kayu melintasi rimbunnya pohon bakau dan habitat burung pesisir.",
+        "fasilitas": "Boardwalk Kayu, Menara Pengamat Burung, Gazebo Edukasi, Spot Foto",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Hotel Kenari Bukit Resort",
+        "tipe_akomodasi_terdekat": "Hotel",
+        "jarak_ke_hotel_m": 284,
+        "jarak_ke_hotel_km": "0.28"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6282,
+          -4.0345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 30,
+        "nama": "Pemandian Alam Bulu Langi",
+        "kategori": "Alam & Ekowisata",
+        "kecamatan": "Bacukiki",
+        "alamat": "Kel. Galung Maloang, Kec. Bacukiki, Kota Parepare",
+        "latitude": -4.0256,
+        "longitude": 119.6745,
+        "jam_buka": "08.00 - 17.00 WITA",
+        "tiket": "Rp 5.000 / orang",
+        "deskripsi": "Sumber mata air alami jernih dan segar yang mengalir di kaki perbukitan Galung Maloang, dikelilingi rindang pepohonan hijau yang sejuk.",
+        "fasilitas": "Kolam Mata Air Alami, Ruang Ganti, Saung Santai, Warung Desa",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Penginapan Lembah Hijau Bacukiki",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 1808,
+        "jarak_ke_hotel_km": "1.81"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6745,
+          -4.0256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31,
+        "nama": "Danau Cappa Batue Galung Maloang",
+        "kategori": "Alam & Ekowisata",
+        "kecamatan": "Bacukiki",
+        "alamat": "Kel. Galung Maloang, Kec. Bacukiki, Kota Parepare",
+        "latitude": -4.0084,
+        "longitude": 119.6642,
+        "jam_buka": "06.00 - 18.00 WITA",
+        "tiket": "Gratis",
+        "deskripsi": "Danau alami tenang di kawasan lembah Bacukiki yang asri, menjadi tempat favorit memancing air tawar dan menikmati ketenangan alam pedesaan.",
+        "fasilitas": "Spot Mancing, Gazebo Tepi Danau, Area Parkir Motor",
+        "terjangkau_hotel_2km": false,
+        "status_akses": "Belum Terjangkau (> 2 km)",
+        "hotel_terdekat": "Penginapan Lembah Hijau Bacukiki",
+        "tipe_akomodasi_terdekat": "Penginapan",
+        "jarak_ke_hotel_m": 2015,
+        "jarak_ke_hotel_km": "2.02"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6642,
+          -4.0084
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32,
+        "nama": "Wisata Pemandangan Bukit Kenari",
+        "kategori": "Rekreasi & Bahari",
+        "kecamatan": "Bacukiki Barat",
+        "alamat": "Kawasan Perbukitan Kenari, Bumi Harapan, Kec. Bacukiki Barat, Kota Parepare",
+        "latitude": -4.0315,
+        "longitude": 119.6318,
+        "jam_buka": "07.00 - 21.00 WITA",
+        "tiket": "Rp 10.000 / orang",
+        "deskripsi": "Destinasi wisata lereng bukit dengan teras pemandangan langsung menghadap lekukan Teluk Parepare, kolam renang outdoor, dan kafe santai.",
+        "fasilitas": "Kolam Renang Bukit, Kafe Pemandangan Laut, Spot Sunset, Parkir Luas",
+        "terjangkau_hotel_2km": true,
+        "status_akses": "Terjangkau (≤ 2 km)",
+        "hotel_terdekat": "Hotel Kenari Bukit Resort",
+        "tipe_akomodasi_terdekat": "Hotel",
+        "jarak_ke_hotel_m": 254,
+        "jarak_ke_hotel_km": "0.25"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6318,
+          -4.0315
+        ]
+      }
     }
   ]
 };

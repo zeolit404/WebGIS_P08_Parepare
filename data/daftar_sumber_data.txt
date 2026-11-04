@@ -14,7 +14,7 @@ Dosen: Andang Suryana Soma, S.Hut., M.P., Ph.D.
    - Publikasi: "Kota Parepare Dalam Angka 2024"
    - Atribut: Luas wilayah (km²), Jumlah Penduduk (jiwa), Kepadatan, Jumlah Kelurahan
 
-3. Titik Objek Wisata (12 Destinasi):
+3. Titik Objek Wisata (32 Destinasi):
    - Sumber: OpenStreetMap (OSM) Contributors & Disporapar Kota Parepare (2024/2025)
    - Lisensi: Open Database License (ODbL)
 
